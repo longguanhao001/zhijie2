@@ -22,4 +22,15 @@ class TestPure():
         keyword = "dualipa"
         video_title = self.pureMain.goto_Search(keyword).get_videoTitle()
         Assert().assert_in(keyword, video_title.lower().replace(" ", ""))
+
         # 搜索18+内容
+        self.pureMain = App.main()
+        keyword = "sex"
+        SearchPage = self.pureMain.goto_Search(keyword)
+        sex_video = ["Cheat Codes x Kris Kross Amsterdam - SEX (Official Music Video)", "Full hindi sex video in bathroom",
+                     "Sex in Public Prank - GONE SEXUAL", "Is She Going Too Far? | Sex Madness", "ASKING GUYS FOR SEX (SOCIAL EXPERIMENT)"]
+        for i in range(5):
+            video_title = SearchPage.get_videoTitle()
+            Assert().assert_not_in(video_title, sex_video)
+            self.pureMain.swipe("up")
+

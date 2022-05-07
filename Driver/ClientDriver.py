@@ -2,7 +2,7 @@ from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 
 class ClientDriver(object):
-    driver : WebDriver
+    driver: WebDriver
     # 后期从jenkins获取的参数
     device = "ios"
     env = "test"
