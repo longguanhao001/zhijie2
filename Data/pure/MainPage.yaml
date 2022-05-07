@@ -1,0 +1,8 @@
+goto_Search:
+  - locator: Search
+    by: id
+    action: click
+  - locator: Search
+    by: id
+    action: sendkeys&enter
+    text: $keyword
