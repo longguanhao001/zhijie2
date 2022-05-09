@@ -29,7 +29,7 @@ class BasePage():
         except:
             # 如果没找到元素，则处理异常后重试
             for i in self.back_list:
-                if i[1] in self.driver.page_source:
+                if i[1] in str(self.driver.page_source):
                     self.driver.find_element(by=i[0], value=i[1]).click()
             element = self.driver.find_element(*kv)
         return element
@@ -48,6 +48,8 @@ class BasePage():
         yaml_data = yaml.safe_load(file)
         steps = yaml_data[key]
         for step in steps:
+            for k, v in kwargs.items(): # 参数化locator字段
+                step["locator"] = step["locator"].replace("$%s" % k, v)
             tuple_locator = (step["by"], step["locator"])
             element = self.find(tuple_locator)
             action = str(step["action"]).lower()
@@ -55,7 +57,7 @@ class BasePage():
                 element.click()
             elif action == "sendkeys":
                 text = str(step["text"])
-                for k, v in kwargs.items():
+                for k, v in kwargs.items(): # 参数化text段
                     text = text.replace("$%s" % k, v)
                 element.set_value(text)
             elif action == "sendkeys&enter":

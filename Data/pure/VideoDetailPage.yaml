@@ -1,0 +1,39 @@
+LoginPageBack:
+  - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+
+like:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+
+add_to:
+  - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
+    by: xpath
+    action: click
+
+subsribe:
+  - locator: SUBSCRIBE
+    by: id
+    action: click
+
+dislike:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+
+getLikeCount:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: findtext
+
+getUpnextVideoName:
+  - locator: //XCUIElementTypeButton/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+
+clickUpnext:
+  - locator: //XCUIElementTypeButton/../../XCUIElementTypeImage
+    by: xpath
+    action: click

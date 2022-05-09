@@ -6,3 +6,15 @@ goto_Search:
     by: id
     action: sendkeys&enter
     text: $keyword
+getVideoName:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+changeTag:
+  - locator: $TagName
+    by: id
+    action: click
+goto_VideoDetail:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
+    by: xpath
+    action: click

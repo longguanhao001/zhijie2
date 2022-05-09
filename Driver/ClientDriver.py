@@ -1,3 +1,6 @@
+import os
+import time
+
 from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 
@@ -7,6 +10,31 @@ class ClientDriver(object):
     device = "ios"
     env = "test"
     channel = "pure"
+
+    @classmethod
+    def deal_guideAndPop(cls, driver: WebDriver):
+        # 处理导航页和更新弹窗
+        try:
+            driver.find_element(by="id", value="Next").click()
+            driver.find_element(by="id", value="Next").click()
+            driver.find_element(by="id", value="S T A R T").click()
+        except:
+            pass
+        try:
+            driver.find_element(by="id", value="icon x white delete").click()
+        except:
+            pass
+
+    @classmethod
+    def installApp(cls):
+        # 安装app
+        result = os.popen("ideviceinstaller -l").read()
+        if "video.test.tools.os" not in result:
+            os.popen("ideviceinstaller -i '../Package/PureTuber_2022-05-07 16:26:05.ipa'").read()
+        else:
+            # 先卸载再删除
+            os.popen("ideviceinstaller -U 'video.test.tools.os'").read()
+            os.popen("ideviceinstaller -i '../Package/PureTuber_2022-05-07 16:26:05.ipa'").read()
 
     @classmethod
     def restartApp(cls):
@@ -20,7 +48,12 @@ class ClientDriver(object):
             caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
             caps['xcodeOrgId'] = '3L4QK9YSAV'
             caps['xcodeSigningId'] = "iPhone Developer"
+            caps['autoAcceptAlerts'] = True
 
             cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
             cls.driver.implicitly_wait(10)
+            if "Next" or "icon x" in str(cls.driver.page_source):
+                cls.deal_guideAndPop(cls.driver)
             return cls.driver
+
+
