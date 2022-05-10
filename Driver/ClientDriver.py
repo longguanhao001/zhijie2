@@ -29,12 +29,15 @@ class ClientDriver(object):
     def installApp(cls):
         # 安装app
         result = os.popen("ideviceinstaller -l").read()
+        # 获取安装包文件
+        file_name_list = os.listdir("../Package")
+
         if "video.test.tools.os" not in result:
-            os.popen("ideviceinstaller -i '../Package/PureTuber_2022-05-07 16:26:05.ipa'").read()
+            os.popen("ideviceinstaller -i '../Package/%s'" % file_name_list[0]).read()
         else:
             # 先卸载再删除
             os.popen("ideviceinstaller -U 'video.test.tools.os'").read()
-            os.popen("ideviceinstaller -i '../Package/PureTuber_2022-05-07 16:26:05.ipa'").read()
+            os.popen("ideviceinstaller -i '../Package/%s'" % file_name_list[0]).read()
 
     @classmethod
     def restartApp(cls):
