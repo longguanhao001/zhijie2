@@ -29,11 +29,30 @@ getLikeCount:
     action: findtext
 
 getUpnextVideoName:
-  - locator: //XCUIElementTypeButton/../XCUIElementTypeStaticText
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../XCUIElementTypeStaticText
     by: xpath
     action: findtext
 
 clickUpnext:
-  - locator: //XCUIElementTypeButton/../../XCUIElementTypeImage
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../../XCUIElementTypeImage
+    by: xpath
+    action: click
+
+get_nowProgress:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeSlider
+    by: xpath
+    action: findtext
+
+closeVideo:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+  - locator: videoDetail player backBtn
+    by: id
+    action: click
+  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click

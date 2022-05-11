@@ -1,0 +1,53 @@
+getVideoName:
+  - locator: //XCUIElementTypeOther/../../XCUIElementTypeStaticText[2]
+    by: xpath
+    action: findtext
+
+goto_VideoDetail:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
+    by: xpath
+    action: click
+
+cleanHistory:
+  - locator: video detail pl icon list more
+    by: id
+    action: click
+  - locator: Clear Local History
+    by: id
+    action: click
+  - locator: CLEAR
+    by: id
+    action: click
+
+turnOffHistory:
+  - locator: video detail pl icon list more
+    by: id
+    action: click
+  - locator: Turn off Local History
+    by: id
+    action: click
+
+goto_Main:
+  - locator: HOME
+    by: id
+    action: click
+
+clickSign_in:
+  - locator: Sign in
+    by: id
+    action: click
+
+clickPlaylist:
+  - locator: Playlist
+    by: id
+    action: click
+
+clickSubscribe:
+  - locator: Subscribe
+    by: id
+    action: click
+
+LoginPageBack:
+  - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click

@@ -10,15 +10,8 @@ from Page.App import App
 from Utils.Assert import Assert
 
 
-@allure.feature("ios pure 自动化测试")
+@allure.feature("首页和搜索页测试用例")
 class TestPure():
-    # @classmethod
-    # def setup_class(cls):
-    #     #  清理screenShot文件夹s
-    #     shutil.rmtree("../ScreenShot")
-    #     os.mkdir("../ScreenShot")
-    #     #  安装app
-    #     # App.maininstall()
 
     def setup(self):
         # 每次执行用例重启app

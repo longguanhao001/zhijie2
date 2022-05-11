@@ -1,0 +1,4 @@
+clickBell:
+  - locator: notification me
+    by: id
+    action: click

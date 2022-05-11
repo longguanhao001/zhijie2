@@ -7,7 +7,7 @@ goto_Search:
     action: sendkeys&enter
     text: $keyword
 getVideoName:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText
     by: xpath
     action: findtext
 changeTag:
@@ -17,4 +17,13 @@ changeTag:
 goto_VideoDetail:
   - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
     by: xpath
+    action: click
+goto_MyVideo:
+  - locator: MY VIDEO
+    by: id
+    action: click
+
+goto_Me:
+  - locator: ME
+    by: id
     action: click

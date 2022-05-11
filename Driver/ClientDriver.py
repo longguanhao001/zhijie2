@@ -1,3 +1,4 @@
+#  encoding: utf-8
 import os
 import time
 
@@ -28,16 +29,22 @@ class ClientDriver(object):
     @classmethod
     def installApp(cls):
         # 安装app
-        result = os.popen("ideviceinstaller -l").read()
-        # 获取安装包文件
-        file_name_list = os.listdir("../Package")
-
-        if "video.test.tools.os" not in result:
-            os.popen("ideviceinstaller -i '../Package/%s'" % file_name_list[0]).read()
-        else:
-            # 先卸载再删除
-            os.popen("ideviceinstaller -U 'video.test.tools.os'").read()
-            os.popen("ideviceinstaller -i '../Package/%s'" % file_name_list[0]).read()
+        try:
+            result = os.popen("/opt/homebrew/bin/ideviceinstaller -l").read()
+            # 获取安装包文件
+            file_name_list = os.listdir("../Package")
+            cur_path = os.path.dirname(os.getcwd())
+            package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
+            if "video.test.tools.os" not in result:
+                os.popen("/opt/homebrew/bin/ideviceinstaller -i '%s'" % package_path).read()
+                os.remove(r"%s" % package_path)
+            else:
+                # 先卸载再删除
+                os.popen("/opt/homebrew/bin/ideviceinstaller -U 'video.test.tools.os'").read()
+                os.popen("/opt/homebrew/bin/ideviceinstaller -i '%s'" % package_path).read()
+                os.remove(r"%s" % package_path)
+        except:
+            pass
 
     @classmethod
     def restartApp(cls):
@@ -48,7 +55,8 @@ class ClientDriver(object):
             caps["platformVersion"] = "14.6"
             caps["deviceName"] = "iPhone(2)"
             caps["app"] = "video.test.tools.os"
-            caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
+            # caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
+            caps["udid"] = "auto"
             caps['xcodeOrgId'] = '3L4QK9YSAV'
             caps['xcodeSigningId'] = "iPhone Developer"
             caps['autoAcceptAlerts'] = True

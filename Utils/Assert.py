@@ -23,3 +23,9 @@ class Assert():
 
     def assert_greater(self, actul, expect):
         assert actul > expect, "{0}大于{1}".format(expect, actul)
+
+    def assert_greaterAndEqual(self, actul, expect):
+        assert actul >= expect, "{0}大于{1}".format(expect, actul)
+
+    def assert_lessAndEqual(self, actul, expect):
+        assert actul <= expect, "{0}小于{1}".format(expect, actul)

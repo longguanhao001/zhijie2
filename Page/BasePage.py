@@ -48,13 +48,16 @@ class BasePage():
         yaml_data = yaml.safe_load(file)
         steps = yaml_data[key]
         for step in steps:
-            for k, v in kwargs.items(): # 参数化locator字段
-                step["locator"] = step["locator"].replace("$%s" % k, v)
+            if "$" in step["locator"]:
+                for k, v in kwargs.items(): # 参数化locator字段
+                    step["locator"] = step["locator"].replace("$%s" % k, v)
             tuple_locator = (step["by"], step["locator"])
-            element = self.find(tuple_locator)
             action = str(step["action"]).lower()
+            element = self.find(tuple_locator)
             if action == "click":
                 element.click()
+            elif action == "findtext":
+                return element.text
             elif action == "sendkeys":
                 text = str(step["text"])
                 for k, v in kwargs.items(): # 参数化text段
@@ -66,8 +69,6 @@ class BasePage():
                     text = text.replace("$%s" % k, v)
                 element.set_value(text)
                 self.enter()
-            elif action == "findtext":
-                return element.text
             else:
                 print("UNKONW KEYWORD")
 
