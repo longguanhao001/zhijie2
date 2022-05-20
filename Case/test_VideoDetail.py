@@ -13,10 +13,13 @@ from Utils.Assert import Assert
 @allure.feature("视频详情页测试用例")
 class TestVideoDetail():
 
-    @classmethod
-    def setup_class(cls):
+    def setup(self):
         # 执行用例前重启app
-        cls.pureMain = App.main()
+        self.pureMain = App.main()
+
+    def teardown(self):
+        # 截图
+        self.pureMain.save_screenShot()
 
     @allure.story("视频详情页测试用例")
     @allure.step("未登录时跳转")

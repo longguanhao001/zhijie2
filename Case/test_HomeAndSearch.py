@@ -17,6 +17,10 @@ class TestPure():
         # 每次执行用例重启app
         self.pureMain = App.main()
 
+    def teardown(self):
+        # 截图
+        self.pureMain.save_screenShot()
+
     @allure.story("搜索测试用例")
     @allure.step("搜索正常内容")
     def test_search_nomal(self):

@@ -1,6 +1,7 @@
 import time
 
 import allure
+from appium.webdriver.common.touch_action import TouchAction
 
 from Driver.ClientDriver import ClientDriver
 import yaml
@@ -34,6 +35,7 @@ class BasePage():
             element = self.driver.find_element(*kv)
         return element
 
+
     def enter(self):
         # 输入后点击确定键
         windows = self.driver.get_window_size()
@@ -58,6 +60,8 @@ class BasePage():
                 element.click()
             elif action == "findtext":
                 return element.text
+            elif action == "longclick":
+                TouchAction(self.driver).long_press(element).perform()
             elif action == "sendkeys":
                 text = str(step["text"])
                 for k, v in kwargs.items(): # 参数化text段
@@ -87,9 +91,10 @@ class BasePage():
             self.driver.swipe(6/7*x, 1/2*y, 1/7*x, 1/2*y, 100)
         time.sleep(2)
 
+
     def save_screenShot(self):
         # 保存截图到测试报告
         tm = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         deviceName = self.driver.caps["deviceName"]
         self.driver.get_screenshot_as_file(r"../ScreenShot/%s_%s.png" % (tm, deviceName))
-        allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName),"断言截图",attachment_type=allure.attachment_type.PNG)
+        allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName),"运行截图",attachment_type=allure.attachment_type.PNG)

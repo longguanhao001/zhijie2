@@ -15,16 +15,14 @@ class ClientDriver(object):
     @classmethod
     def deal_guideAndPop(cls, driver: WebDriver):
         # 处理导航页和更新弹窗
-        try:
+        time.sleep(3)
+        if "Next" in str(cls.driver.page_source):
             driver.find_element(by="id", value="Next").click()
             driver.find_element(by="id", value="Next").click()
             driver.find_element(by="id", value="S T A R T").click()
-        except:
-            pass
-        try:
+        time.sleep(3)
+        if "icon x" in str(cls.driver.page_source):
             driver.find_element(by="id", value="icon x white delete").click()
-        except:
-            pass
 
     @classmethod
     def installApp(cls):
@@ -43,6 +41,11 @@ class ClientDriver(object):
                 os.popen("/opt/homebrew/bin/ideviceinstaller -U 'video.test.tools.os'").read()
                 os.popen("/opt/homebrew/bin/ideviceinstaller -i '%s'" % package_path).read()
                 os.remove(r"%s" % package_path)
+            # 在这里决定执行哪个包的yaml文件
+            if "daily" in file_name_list[0].lower():
+                cls.channel = "daily"
+            else:
+                pass
         except:
             pass
 
@@ -51,7 +54,7 @@ class ClientDriver(object):
         # 重启app
         if cls.device == "ios":
             caps = {}
-            caps["platformName"] = "ios"
+            caps["platformName"] = "iOS"
             caps["platformVersion"] = "14.6"
             caps["deviceName"] = "iPhone(2)"
             caps["app"] = "video.test.tools.os"
@@ -63,8 +66,7 @@ class ClientDriver(object):
 
             cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
             cls.driver.implicitly_wait(10)
-            if "Next" or "icon x" in str(cls.driver.page_source):
-                cls.deal_guideAndPop(cls.driver)
+            cls.deal_guideAndPop(cls.driver)
             return cls.driver
 
 

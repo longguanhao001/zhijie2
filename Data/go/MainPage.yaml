@@ -1,0 +1,29 @@
+goto_Search:
+  - locator: Search
+    by: id
+    action: click
+  - locator: Search
+    by: id
+    action: sendkeys&enter
+    text: $keyword
+getVideoName:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+changeTag:
+  - locator: $TagName
+    by: id
+    action: click
+goto_VideoDetail:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
+    by: xpath
+    action: click
+goto_MyVideo:
+  - locator: MY VIDEO
+    by: id
+    action: click
+
+goto_Me:
+  - locator: ME
+    by: id
+    action: click

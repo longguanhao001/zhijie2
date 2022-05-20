@@ -23,21 +23,3 @@ clipboardValue:
   - locator: Paste
     by: id
     action: click
-feedback:
-  - locator: Feedback
-    by: id
-    action: click
-  - locator: Submit feedback
-    by: id
-    action: click
-  - locator: Please describe the issue in details :)
-    by: id
-    text: $keyword
-    action: sendkeys
-  - locator: Create
-    by: id
-    action: click
-clickPolicy:
-  - locator: Privacy policy
-    by: id
-    action: click

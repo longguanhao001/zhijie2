@@ -1,0 +1,58 @@
+LoginPageBack:
+  - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+
+like:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+
+add_to:
+  - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
+    by: xpath
+    action: click
+
+subsribe:
+  - locator: SUBSCRIBE
+    by: id
+    action: click
+
+dislike:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+
+getLikeCount:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: findtext
+
+getUpnextVideoName:
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+
+clickUpnext:
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../../XCUIElementTypeImage
+    by: xpath
+    action: click
+
+get_nowProgress:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeSlider
+    by: xpath
+    action: findtext
+
+closeVideo:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+  - locator: videoDetail player backBtn
+    by: id
+    action: click
+  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click

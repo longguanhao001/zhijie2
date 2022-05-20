@@ -13,13 +13,19 @@ from Utils.Assert import Assert
 @allure.feature("资产页测试用例")
 class TestMyVideo():
 
-    @classmethod
-    def setup_class(cls):
+    def setup(self):
         # 执行用例前重启app
-        cls.pureMain = App.main()
+        self.pureMain = App.main()
+
+    def teardown(self):
+        # 截图
+        self.pureMain.save_screenShot()
 
     @allure.story("本地播放历史")
     def test_LocalHistory(self):
+        DetailPage = self.pureMain.goto_VideoDetail()
+        time.sleep(10)
+        DetailPage.closeVideo()
         MyVideoPage = self.pureMain.goto_MyVideo()
         cur_videoName = MyVideoPage.getVideoName()
         MyVideoPage.cleanHistory()
@@ -32,6 +38,7 @@ class TestMyVideo():
         DetailPage.closeVideo()
         self.pureMain.goto_MyVideo()
         self.pureMain.swipe("down")
+        MyVideoPage.turnOnHistory() # 打开播放历史避免影响其他用例
         Assert().assert_not_in(homeVideoName, MyVideoPage.driver.page_source)
 
     @allure.story("未登录时点击这些按钮会跳转到登陆页")

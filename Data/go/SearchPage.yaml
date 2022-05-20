@@ -1,0 +1,4 @@
+get_videoTitle:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText
+    by: xpath
+    action: findtext

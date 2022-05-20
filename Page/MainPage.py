@@ -8,10 +8,6 @@ from Page.VideoDetailPage import VideoDetailPage
 class MainPage(BasePage):
     yaml_path = "../Data/$channel/MainPage.yaml"
 
-    def goto_Me(self):
-        # 跳转到me页
-        pass
-
     def getVideoName(self):
         # 获取home页面的视频标题
         return self.loadSteps(self.yaml_path, "getVideoName")
@@ -40,3 +36,4 @@ class MainPage(BasePage):
         # 跳转到我的页
         self.loadSteps(self.yaml_path, "goto_Me")
         return MePage()
+

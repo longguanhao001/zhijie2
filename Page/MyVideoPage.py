@@ -20,7 +20,12 @@ class MyVideoPage(BasePage):
         # 关闭播放历史功能
         self.loadSteps(self.yaml_path, "turnOffHistory")
         return self
-
+    
+    def turnOnHistory(self):
+        # 打开播放历史功能
+        self.loadSteps(self.yaml_path, "turnOnHistory")
+        return self
+    
     def goto_Main(self):
         # 关闭播放历史功能
         self.loadSteps(self.yaml_path, "goto_Main")

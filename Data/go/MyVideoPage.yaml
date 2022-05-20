@@ -27,14 +27,6 @@ turnOffHistory:
     by: id
     action: click
 
-turnOnHistory:
-  - locator: video detail pl icon list more
-      by: id
-      action: click
-  - locator: Turn on Local History
-    by: id
-    action: click
-
 goto_Main:
   - locator: HOME
     by: id

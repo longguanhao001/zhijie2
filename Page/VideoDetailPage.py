@@ -51,6 +51,7 @@ class VideoDetailPage(BasePage):
 
     def getUpnextVideoName(self):
         # 获取upnext视频名称
+
         return self.loadSteps(self.yaml_path, "getUpnextVideoName")
 
     def closeVideo(self):
