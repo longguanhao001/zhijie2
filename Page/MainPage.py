@@ -12,6 +12,10 @@ class MainPage(BasePage):
         # 获取home页面的视频标题
         return self.loadSteps(self.yaml_path, "getVideoName")
 
+    def getChannelName(self):
+        # 获取home页面的视频频道名
+        return self.loadSteps(self.yaml_path, "getChannelName")
+
     def goto_Search(self, var1):
         # 跳转到me页
         self.loadSteps(self.yaml_path, "goto_Search", keyword=var1)
@@ -36,4 +40,14 @@ class MainPage(BasePage):
         # 跳转到我的页
         self.loadSteps(self.yaml_path, "goto_Me")
         return MePage()
+
+    def goto_Home(self):
+        # 跳转到我的页
+        self.loadSteps(self.yaml_path, "goto_Home")
+        return MePage()
+
+    def backButton(self):
+        # 主页返回按钮
+        self.loadSteps(self.yaml_path, "backButton")
+        return self
 

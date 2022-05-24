@@ -14,3 +14,10 @@ class App(BasePage):
     def maininstall(cls):
         # 初始化应用
         cls.getClient().installApp()
+
+    @classmethod
+    def is_test(cls):
+        if cls.getClient().env == "test":
+            return True
+        else:
+            return False

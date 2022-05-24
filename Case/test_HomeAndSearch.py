@@ -1,6 +1,8 @@
 #  encoding: utf-8
 import sys
 
+import pytest
+
 sys.path.append(r"/Users/huangzhijie/PycharmProjects/PureIosAutoTest/venv/lib/python3.8/site-packages")
 sys.path.append(r"/Users/huangzhijie/PycharmProjects/PureIosAutoTest")
 
@@ -11,7 +13,7 @@ from Utils.Assert import Assert
 
 
 @allure.feature("首页和搜索页测试用例")
-class TestPure():
+class TestHomeSearch():
 
     def setup(self):
         # 每次执行用例重启app
@@ -54,12 +56,9 @@ class TestPure():
     @allure.story("Home页测试用例")
     def test_HomeTag(self):
         #检查home tag切换功能
-        video_title_list = []
-        video_title_list.append(self.pureMain.getVideoName())
         for i in ["Trending", "Music", "Gaming", "Movies"]:
             video_title = self.pureMain.changeTag(i).getVideoName()
-            Assert().assert_not_in(video_title, video_title_list)
-            video_title_list.append(video_title)
+            Assert().assert_not_equal(None, video_title)
 
 
 

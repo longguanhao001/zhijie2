@@ -68,5 +68,3 @@ class ClientDriver(object):
             cls.driver.implicitly_wait(10)
             cls.deal_guideAndPop(cls.driver)
             return cls.driver
-
-

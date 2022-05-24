@@ -21,8 +21,14 @@ class VideoDetailPage(BasePage):
         self.loadSteps(self.yaml_path, "dislike")
 
     def add_to(self):
-        # 点击点赞按钮
+        # 点击add_to按钮
         self.loadSteps(self.yaml_path, "add_to")
+        return self
+
+    def Watchlater(self):
+        # 添加视频到watch later
+        self.loadSteps(self.yaml_path, "Watchlater")
+        return self
 
     def backGroundPlay(self):
         pass
@@ -37,6 +43,7 @@ class VideoDetailPage(BasePage):
     def subsribe(self):
         # 点击点赞按钮
         self.loadSteps(self.yaml_path, "subsribe")
+        return self
 
     def open_comment(self):
         pass
@@ -57,3 +64,6 @@ class VideoDetailPage(BasePage):
     def closeVideo(self):
         # 关闭视频
         self.loadSteps(self.yaml_path, "closeVideo")
+        if "Cancel" in self.driver.page_source:
+            self.loadSteps(self.yaml_path, "clickCancel")
+

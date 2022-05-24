@@ -10,6 +10,10 @@ getVideoName:
   - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText
     by: xpath
     action: findtext
+getChannelName:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText[2]
+    by: xpath
+    action: findtext
 changeTag:
   - locator: $TagName
     by: id
@@ -22,7 +26,14 @@ goto_MyVideo:
   - locator: MY VIDEO
     by: id
     action: click
-
+goto_Home:
+  - locator: HOME
+    by: id
+    action: click
+backButton:
+  - locator: //XCUIElementTypeButton
+    by: xpath
+    action: click
 goto_Me:
   - locator: ME
     by: id

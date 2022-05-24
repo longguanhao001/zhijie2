@@ -2,6 +2,8 @@ import time
 
 import allure
 from appium.webdriver.common.touch_action import TouchAction
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 from Driver.ClientDriver import ClientDriver
 import yaml
@@ -35,7 +37,6 @@ class BasePage():
             element = self.driver.find_element(*kv)
         return element
 
-
     def enter(self):
         # 输入后点击确定键
         windows = self.driver.get_window_size()
@@ -58,6 +59,9 @@ class BasePage():
             element = self.find(tuple_locator)
             if action == "click":
                 element.click()
+            elif action == "click&sleep":
+                element.click()
+                time.sleep(0.5)
             elif action == "findtext":
                 return element.text
             elif action == "longclick":
@@ -91,10 +95,15 @@ class BasePage():
             self.driver.swipe(6/7*x, 1/2*y, 1/7*x, 1/2*y, 100)
         time.sleep(2)
 
+    def DeiverWaitToast(self, keyword):
+        #显示等待toast
+        toast_loc = ("xpath", "//XCUIElementTypeStaticText[@name=%s]" %keyword)
+        ele = WebDriverWait(self.driver, 10, 0.3).until(expected_conditions.presence_of_element_located(toast_loc))
+        return ele
 
     def save_screenShot(self):
         # 保存截图到测试报告
         tm = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         deviceName = self.driver.caps["deviceName"]
         self.driver.get_screenshot_as_file(r"../ScreenShot/%s_%s.png" % (tm, deviceName))
-        allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName),"运行截图",attachment_type=allure.attachment_type.PNG)
+        allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName), "运行截图", attachment_type=allure.attachment_type.PNG)

@@ -2,6 +2,8 @@
 import sys
 import time
 
+import pytest
+
 sys.path.append(r"/Users/huangzhijie/PycharmProjects/PureIosAutoTest/venv/lib/python3.8/site-packages")
 sys.path.append(r"/Users/huangzhijie/PycharmProjects/PureIosAutoTest")
 
@@ -57,6 +59,7 @@ class TestVideoDetail():
             Assert().assert_not_in(videoName, upnextVideoList)
             upnextVideoList.append(videoName)
         DetailPage.clickUpnext()
+        time.sleep(1)
         new_likeCount = DetailPage.getLikeCount()
         Assert().assert_not_equal(cur_likeCount, new_likeCount)
 
@@ -75,8 +78,8 @@ class TestVideoDetail():
         DetailPage.closeVideo()
         MyVideoPage = self.pureMain.goto_MyVideo()
         self.pureMain.swipe("down")
-        HistoryVideoName = MyVideoPage.getVideoName()
-        Assert().assert_equal(homeVideoName, HistoryVideoName)
+        time.sleep(1)
+        Assert().assert_equal(homeVideoName, MyVideoPage.driver.page_source)
         MyVideoPage.goto_VideoDetail()
         time.sleep(3)
         now_Progress = str(DetailPage.get_nowProgress()).replace("%", "")

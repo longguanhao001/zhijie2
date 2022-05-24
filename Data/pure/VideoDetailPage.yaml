@@ -12,12 +12,21 @@ add_to:
   - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
     by: xpath
     action: click
-
+Watchlater:
+  - locator: //XCUIElementTypeStaticText[@name="Watch later"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
+    action: click
 subsribe:
   - locator: SUBSCRIBE
     by: id
     action: click
-
+clickCancel:
+  - locator: Cancel
+    by: id
+    action: click
 dislike:
   - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[2]
     by: xpath

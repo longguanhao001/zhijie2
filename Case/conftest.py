@@ -12,6 +12,7 @@ import shutil
 import pytest
 from Page.App import App
 
+is_login = False
 
 @pytest.fixture(scope="session", autouse=True)
 def cleanScreenShot():
@@ -24,3 +25,23 @@ def cleanScreenShot():
     yield
     driver = ClientDriver.driver
     driver.quit()
+
+
+def pytest_collection_modifyitems(items):
+    # 自定义用例执行顺序
+    unlogin = []
+    login = []
+    for item in items:
+        if "_login" in item.name:
+            if item.name == "test_login":
+                login.insert(0, item)
+            else:
+                login.append(item)
+        else:
+            unlogin.append(item)
+    caselist = unlogin+login
+    items.clear()
+    for cases in caselist:
+        items.append(cases)
+
+
