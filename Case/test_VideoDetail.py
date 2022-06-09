@@ -79,8 +79,9 @@ class TestVideoDetail():
         MyVideoPage = self.pureMain.goto_MyVideo()
         self.pureMain.swipe("down")
         time.sleep(1)
-        Assert().assert_equal(homeVideoName, MyVideoPage.driver.page_source)
+        Assert().assert_in(homeVideoName, MyVideoPage.driver.page_source)
         MyVideoPage.goto_VideoDetail()
         time.sleep(3)
         now_Progress = str(DetailPage.get_nowProgress()).replace("%", "")
         Assert().assert_greaterAndEqual(now_Progress, cur_Progress)
+

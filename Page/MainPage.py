@@ -16,7 +16,7 @@ class MainPage(BasePage):
         # 获取home页面的视频频道名
         return self.loadSteps(self.yaml_path, "getChannelName")
 
-    def goto_Search(self, var1):
+    def goto_Search(self, var1=None):
         # 跳转到me页
         self.loadSteps(self.yaml_path, "goto_Search", keyword=var1)
         return SearchPage()
@@ -51,3 +51,42 @@ class MainPage(BasePage):
         self.loadSteps(self.yaml_path, "backButton")
         return self
 
+    def clickMore(self):
+        # 主页点击more按钮
+        self.loadSteps(self.yaml_path, "clickMore")
+        return self
+
+    def clickBgPlay(self):
+        # 主页点击背景播放按钮
+        self.loadSteps(self.yaml_path, "clickBgPlay")
+        return self
+
+    def clickPopPlay(self):
+        # 主页点击小窗播放按钮
+        self.loadSteps(self.yaml_path, "clickPopPlay")
+        return self
+
+    def clickShare(self):
+        # 主页点击分享按钮
+        self.loadSteps(self.yaml_path, "clickShare")
+        return self
+
+    def click_Search(self):
+        # 点击搜索框
+        self.loadSteps(self.yaml_path, "click_Search")
+        return SearchPage()
+
+    def closeVideo(self):
+        # 首页关闭视频
+        self.loadSteps(self.yaml_path, "closeVideo")
+        return self
+
+    def selectAndReport(self, var1):
+        # 首页举报视频
+        self.loadSteps(self.yaml_path, "selectAndReport", option=var1)
+        return self
+
+    def AlertClickDone(self):
+        # 首页举报弹窗点击done
+        self.loadSteps(self.yaml_path, "AlertClickDone")
+        return self

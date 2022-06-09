@@ -107,3 +107,11 @@ class BasePage():
         deviceName = self.driver.caps["deviceName"]
         self.driver.get_screenshot_as_file(r"../ScreenShot/%s_%s.png" % (tm, deviceName))
         allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName), "运行截图", attachment_type=allure.attachment_type.PNG)
+
+    def is_exits(self, located):
+        try:
+            tuple_locator = ("id", located)
+            self.find(tuple_locator)
+            return True
+        except:
+            return False

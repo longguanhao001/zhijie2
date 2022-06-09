@@ -48,7 +48,7 @@ class TestMe():
     def test_policy(self):
         MePage = self.pureMain.goto_Me().clickPolicy()
         time.sleep(1.5)
-        Assert().assert_in("Privacy Policy", MePage.driver.page_source)
+        Assert().assert_in("Privacy Policy", str(MePage.driver.page_source))
 
     @allure.story("登录用例")
     def test_login(self):

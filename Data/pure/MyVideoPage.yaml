@@ -45,11 +45,6 @@ clickSign_in:
     by: id
     action: click
 
-clickPlaylist:
-  - locator: Playlist
-    by: id
-    action: click
-
 clickSubscribe:
   - locator: Subscribe
     by: id
@@ -125,12 +120,30 @@ PlayAll:
     by: xpath
     action: click
 
+
+PlayAll_Share:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeOther/XCUIElementTypeButton[3]
+    by: xpath
+    action: click
+
 clickVideo:
   - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeStaticText
     by: xpath
     action: click
 
 removeVideo:
-  - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage[2]
+  - locator: //XCUIElementTypeStaticText[@name="$video_name"]/../XCUIElementTypeImage[2]
     by: xpath
+    action: click
+  - locator: Remove
+    by: id
+    action: click
+
+clickLikeVideos:
+  - locator: Liked videos
+    by: id
+    action: click
+clickPlaylist:
+  - locator: Auto
+    by: id
     action: click

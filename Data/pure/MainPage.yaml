@@ -38,3 +38,67 @@ goto_Me:
   - locator: ME
     by: id
     action: click
+clickMore:
+  - locator: video icon more
+    by: id
+    action: click
+clickBgPlay:
+  - locator: Start playing in the background
+    by: id
+    action: click
+clickPopPlay:
+  - locator: Start playing in a popup
+    by: id
+    action: click
+clickShare:
+  - locator: Share
+    by: id
+    action: click
+  - locator: Copy
+    by: id
+    action: click
+click_Search:
+  - locator: Search
+    by: id
+    action: click
+clickReportContent:
+  - locator: Report Content
+    by: id
+    action: click
+clickAddToPlaylist:
+  - locator: Add To Playlist
+    by: id
+    action: click
+  - locator: Auto
+    by: id
+    action: click
+  - locator: Done
+    by: id
+    action: click
+clickAddToWatchLater:
+  - locator: Add To Watch Later
+    by: id
+    action: click
+clickNotInterested:
+  - locator: Not Interested
+    by: id
+    action: click
+NotInterestedUndo:
+  - locator: Undo
+    by: id
+    action: click
+closeVideo:
+  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+selectAndReport:
+  - locator: //XCUIElementTypeStaticText[@name="$option"]
+    by: xpath
+    action: click
+  - locator: SEND
+    by: id
+    action: click
+AlertClickDone:
+  - locator: Done
+    by: id
+    action: click

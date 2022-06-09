@@ -2,12 +2,10 @@ LoginPageBack:
   - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click
-
 like:
   - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click
-
 add_to:
   - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
     by: xpath
@@ -19,6 +17,14 @@ Watchlater:
   - locator: Done
     by: id
     action: click
+Playlist:
+  - locator: //XCUIElementTypeStaticText[@name="Auto"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
+    action: click
+
 subsribe:
   - locator: SUBSCRIBE
     by: id
@@ -56,12 +62,6 @@ get_nowProgress:
     action: findtext
 
 closeVideo:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
-    by: xpath
-    action: click
-  - locator: videoDetail player backBtn
-    by: id
-    action: click
   - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click

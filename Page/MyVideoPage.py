@@ -94,12 +94,32 @@ class MyVideoPage(BasePage):
         self.loadSteps(self.yaml_path, "PlayAll")
         return self
 
+    def PlayAll_Share(self):
+        # 有share按钮的情况下定位全部播放按钮
+        self.loadSteps(self.yaml_path, "PlayAll_Share")
+        return self
+
     def clickVideo(self):
         # 点击视频cell
         self.loadSteps(self.yaml_path, "clickVideo")
         return self
 
-    def removeVideo(self):
+    def removeVideo(self, var1):
         # 删除watch later
-        self.loadSteps(self.yaml_path, "removeVideo")
+        self.loadSteps(self.yaml_path, "removeVideo", video_name=var1)
+        return self
+
+    def clickLikeVideos(self):
+        # 点击LikeVideos
+        self.loadSteps(self.yaml_path, "clickLikeVideos")
+        return self
+
+    def clickPlaylist(self):
+        # 点击Playlist
+        self.loadSteps(self.yaml_path, "clickPlaylist")
+        return self
+
+    def NotInterestedUndo(self):
+        # 撤销NotInterested
+        self.loadSteps(self.yaml_path, "NotInterestedUndo")
         return self

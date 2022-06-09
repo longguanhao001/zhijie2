@@ -24,18 +24,15 @@ class TestHomeSearch():
         self.pureMain.save_screenShot()
 
     @allure.story("搜索测试用例")
-    @allure.step("搜索正常内容")
-    def test_search_nomal(self):
+    def test_search(self):
         # 搜索非18+内容
         allure.step("搜索非18+内容")
         keyword = "dualipa"
         video_title = self.pureMain.goto_Search(keyword).get_videoTitle()
         Assert().assert_in(keyword, video_title.lower().replace(" ", ""))
 
-    @allure.story("搜索测试用例")
-    @allure.step("搜索18+内容")
-    def test_search_18(self):
-        # 搜索18+内容
+        # 搜索色情内容
+        self.pureMain.backButton()
         keyword = "sex"
         SearchPage = self.pureMain.goto_Search(keyword)
         sex_video = ["Cheat Codes x Kris Kross Amsterdam - SEX (Official Music Video)", "Full hindi sex video in bathroom",
@@ -45,10 +42,8 @@ class TestHomeSearch():
             Assert().assert_not_in(video_title, sex_video)
             self.pureMain.swipe("up")
 
-    @allure.story("搜索测试用例")
-    @allure.step("搜索屏蔽内容")
-    def test_search_blackworld(self):
-        # 搜索屏蔽内容
+        # 搜索屏蔽词
+        self.pureMain.backButton()
         keyword = "zing"
         video_title = self.pureMain.goto_Search(keyword).get_videoTitle()
         Assert().assert_not_in(keyword, video_title.lower())
@@ -60,6 +55,41 @@ class TestHomeSearch():
             video_title = self.pureMain.changeTag(i).getVideoName()
             Assert().assert_not_equal(None, video_title)
 
+    @allure.story("Home页mor按钮功能测试用例")
+    def test_more_login(self):
+        # 背景播放
+        video_name = self.pureMain.getVideoName()
+        # self.pureMain.clickMore()
+        # Assert().assert_equal(True, self.pureMain.is_exits("Report Content"))
+        # self.pureMain.clickBgPlay()
+        # Assert().assert_in(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
+        # self.pureMain.closeVideo()
+        # 小窗播放
+        # self.pureMain.clickMore().clickPopPlay()
+        # 分享
+        self.pureMain.clickMore().clickShare()
+        self.pureMain.click_Search().clipboardValue()
+        Assert().assert_in(video_name, self.pureMain.driver.page_source)
+        self.pureMain.backButton()
+        # 举报内容
+        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
+        Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
+        self.pureMain.AlertClickDone()
+        # no interested
+        self.pureMain.clickMore().clickNotInterested()
+        Assert().assert_equal(False, self.pureMain.is_exits("Video removed"))
+        self.pureMain.NotInterestedUndo()
+        Assert().assert_equal(True, self.pureMain.is_exits("Video removed"))
 
+        # 加入playlist和稍后看
+        self.pureMain.clickMore().clickAddToPlaylist()
+        self.pureMain.clickMore().clickAddToWatchLater()
+        PlaylistPage = self.pureMain.goto_MyVideo().clickPlaylist()
+        Assert().assert_equal(True, self.pureMain.is_exits(video_name))
+        PlaylistPage.removeVideo(video_name)
+        self.pureMain.backButton()
+        PlaylistPage.clickWatchLater()
+        Assert().assert_equal(True, self.pureMain.is_exits(video_name))
+        PlaylistPage.removeVideo(video_name)
 
 
