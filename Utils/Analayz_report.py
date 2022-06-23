@@ -1,12 +1,14 @@
 import json
+import os
 import time
 
 
 def analayz():
     # 构建结束统计测试结果
+    path = os.getcwd()
     print("构建结束统计测试结果")
     time.sleep(10) # 等待allure报告
-    f = open("../report.json", "r")
+    f = open("%s/report.json" % path, "r")
     file = json.load(f)
     result = ""
     summary = dict(file["summary"])
@@ -15,7 +17,7 @@ def analayz():
     error = summary.get("error", "0")
     total = summary.get("total", "0")
     result = result.join("PASSED=%s\nFAILED=%s\nERROR=%s\nTOTAL=%s\n" % (passed,failed,error,total))
-    file = open("../report.txt", "w")
+    file = open("%s/report.json" % path, "w")
     file.write(result)
     print(result)
     f.close()

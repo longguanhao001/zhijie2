@@ -1,3 +1,4 @@
+import os
 import time
 
 import allure
@@ -11,6 +12,7 @@ import yaml
 class BasePage():
     driver = None
     back_list = [("id", "Retry")]
+    path = os.getcwd()
 
     def __init__(self):
         self.driver = self.getDriver()
@@ -111,8 +113,8 @@ class BasePage():
         # 保存截图到测试报告
         tm = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         deviceName = self.driver.caps["deviceName"]
-        self.driver.get_screenshot_as_file(r"../ScreenShot/%s_%s.png" % (tm, deviceName))
-        allure.attach.file(r"../ScreenShot/%s_%s.png" % (tm, deviceName), "运行截图", attachment_type=allure.attachment_type.PNG)
+        self.driver.get_screenshot_as_file(r"%s/ScreenShot/%s_%s.png" % (self.path, tm, deviceName))
+        allure.attach.file(r"%s/ScreenShot/%s_%s.png" % (self.path, tm, deviceName), "运行截图", attachment_type=allure.attachment_type.PNG)
 
     def is_exits(self, located):
         try:
