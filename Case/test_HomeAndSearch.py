@@ -104,23 +104,43 @@ class TestHomeSearch():
     @allure.story("channel页功能测试用例")
     def test_channel(self):
         # channel页功能
-        channel_name = self.pureMain.getChannelName()
         ChannelPage = self.pureMain.clickchannel()
-        Assert().assert_equal(True, self.pureMain.is_exits("SUBSCRIBE"))
+        Assert().assert_equal(True, self.pureMain.is_exits("Report"))
+
         # 播放视频
         DetailPage = ChannelPage.channelClickVideo()
         time.sleep(3)
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
-        # 播放playlist
+
+        # 其他页面ß
+        ChannelPage.clickAboutlTag()
+        ChannelPage.clickChannelTag()
+
+        # 播放视频
         ChannelPage.clickVideosTag()
-        Assert().assert_equal(False, self.pureMain.is_exits("SUBSCRIBE"))
-        for i in ["Most popular", "Date added (oldest)", "Date added (newest)"]:
-            ChannelPage.channelSortBy(i)
+        Assert().assert_equal(True, self.pureMain.is_exits("Sort by"))
+        if self.pureMain.is_exits("Sort by"):
+            for i in ["Most popular", "Date added (oldest)", "Date added (newest)"]:
+                ChannelPage.channelSortBy(i)
         ChannelPage.channelClickVideo()
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
-        #
+
+        # 播放playlist
+        ChannelPage.clickPlaylistsTag()
+        if self.pureMain.is_exits("Sort by"):
+            for i in ["Last video added", "Date added (newest)"]:
+                ChannelPage.channelSortBy(i)
+        ChannelPage.channelClickPlaylist()
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
+        self.pureMain.backButton()
+
+
+
+
+
 
 
 

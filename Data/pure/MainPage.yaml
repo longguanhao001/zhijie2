@@ -19,21 +19,47 @@ clickchannel:
     by: xpath
     action: click
 channelClickVideo:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText[2]
     by: xpath
     action: click
 clickVideosTag:
   - locator: Videos
     by: id
     action: click
+clickPlaylistsTag:
+  - locator: Playlists
+    by: id
+    action: click
+clickSubscribe:
+  - locator: SUBSCRIBE
+    by: id
+    action: click
+clickChannelTag:
+  - locator: Channels
+    by: id
+    action: click
+clickAboutlTag:
+  - locator: About
+    by: id
+    action: click
+clickUnSubscribe:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeButton
+    by: xpath
+    action: click
+channelClickPlaylist:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText[2]
+    by: xpath
+    action: click
+  - locator: playlist play all
+    by: id
+    action: click
 channelSortBy:
   - locator: //XCUIElementTypeStaticText[@name="Sort by"]/../XCUIElementTypeButton
     by: xpath
     action: click
-  - locator: $key
+  - locator: $keyword
     by: id
     action: click
-
 changeTag:
   - locator: $TagName
     by: id

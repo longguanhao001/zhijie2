@@ -18,7 +18,8 @@ class MainPage(BasePage):
 
     def channelClickVideo(self):
         # 跳转到channel页
-        return self.loadSteps(self.yaml_path, "channelClickVideo")
+        self.loadSteps(self.yaml_path, "channelClickVideo")
+        return VideoDetailPage()
 
     def clickchannel(self):
         # 跳转到channel页
@@ -31,17 +32,47 @@ class MainPage(BasePage):
 
     def channelSortBy(self, var1):
         # 在channel页中排序视频
-        return self.loadSteps(self.yaml_path, "channelSortBy", key=var1)
+        return self.loadSteps(self.yaml_path, "channelSortBy", keyword=var1)
 
 
     def goto_Search(self, var1=None):
-        # 跳转到me页
+        # 跳转到search页
         self.loadSteps(self.yaml_path, "goto_Search", keyword=var1)
         return SearchPage()
 
     def changeTag(self, var1):
-        # 跳转到me页
+        # 首页切换tab
         self.loadSteps(self.yaml_path, "changeTag", TagName=var1)
+        return self
+
+    def clickPlaylistsTag(self):
+        #  在channel页中点击playlist
+        self.loadSteps(self.yaml_path, "clickPlaylistsTag")
+        return self
+
+    def channelClickPlaylist(self):
+        # 在channel页中播放playlist
+        self.loadSteps(self.yaml_path, "channelClickPlaylist")
+        return self
+
+    def clickChannelTag(self):
+        #  在channel页中点击channel tab
+        self.loadSteps(self.yaml_path, "clickChannelTag")
+        return self
+
+    def clickAboutlTag(self):
+        #  在channel页中点击channel tab
+        self.loadSteps(self.yaml_path, "clickAboutlTag")
+        return self
+
+    def clickSubscribe(self):
+        # channel页点击关注
+        self.loadSteps(self.yaml_path, "clickSubscribe")
+        return self
+
+    def clickUnSubscribe(self):
+        # channel页点击不关注
+        self.loadSteps(self.yaml_path, "clickUnSubscribe")
         return self
 
     def goto_VideoDetail(self):
