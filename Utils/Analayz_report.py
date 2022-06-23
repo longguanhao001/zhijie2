@@ -5,7 +5,7 @@ import time
 
 def analayz():
     # 构建结束统计测试结果
-    path = os.getcwd()
+    path = os.path.dirname(os.getcwd())
     print("构建结束统计测试结果")
     time.sleep(10) # 等待allure报告
     f = open("%s/report.json" % path, "r")

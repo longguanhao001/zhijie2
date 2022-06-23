@@ -16,7 +16,7 @@ is_login = False
 
 @pytest.fixture(scope="session", autouse=True)
 def cleanScreenShot():
-    path = os.getcwd()
+    path = os.path.dirname(os.getcwd())
     #  清理screenShot文件夹
     shutil.rmtree("%s/ScreenShot" % path)
     os.mkdir("%s/ScreenShot" % path)

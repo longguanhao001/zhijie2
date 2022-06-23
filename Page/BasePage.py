@@ -12,7 +12,7 @@ import yaml
 class BasePage():
     driver = None
     back_list = [("id", "Retry")]
-    path = os.getcwd()
+    path = os.path.dirname(os.getcwd())
 
     def __init__(self):
         self.driver = self.getDriver()
