@@ -95,11 +95,17 @@ class BasePage():
             self.driver.swipe(6/7*x, 1/2*y, 1/7*x, 1/2*y, 100)
         time.sleep(2)
 
-    def DeiverWaitToast(self, keyword):
-        #显示等待toast
-        toast_loc = ("xpath", "//XCUIElementTypeStaticText[@name=%s]" %keyword)
-        ele = WebDriverWait(self.driver, 10, 0.3).until(expected_conditions.presence_of_element_located(toast_loc))
+    def DeiverWaitExist(self,by,keyword):
+        #显示等待toast存在
+        toast_loc = ("%s" % by, "%s" % keyword)
+        ele = WebDriverWait(self.driver, 10, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
         return ele
+    def DeiverWaitDisappear(self,by,keyword):
+        #显示等待toast消失
+        toast_loc = ("%s" % by, "%s" % keyword)
+        ele = WebDriverWait(self.driver, 10, 0.3).until_not(expected_conditions.visibility_of_element_located(toast_loc))
+        return ele
+
 
     def save_screenShot(self):
         # 保存截图到测试报告

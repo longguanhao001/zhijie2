@@ -14,6 +14,26 @@ getChannelName:
   - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText[2]
     by: xpath
     action: findtext
+clickchannel:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage
+    by: xpath
+    action: click
+channelClickVideo:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+clickVideosTag:
+  - locator: Videos
+    by: id
+    action: click
+channelSortBy:
+  - locator: //XCUIElementTypeStaticText[@name="Sort by"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: $key
+    by: id
+    action: click
+
 changeTag:
   - locator: $TagName
     by: id
@@ -41,6 +61,10 @@ goto_Me:
 clickMore:
   - locator: video icon more
     by: id
+    action: click
+clickMoreTwo:
+  - locator: //XCUIElementTypeCell[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
     action: click
 clickBgPlay:
   - locator: Start playing in the background
@@ -88,7 +112,7 @@ NotInterestedUndo:
     by: id
     action: click
 closeVideo:
-  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
     by: xpath
     action: click
 selectAndReport:

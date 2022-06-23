@@ -73,8 +73,8 @@ class TestMyVideo():
         # 取关
         channelDetailPage = SubscribePage.clickChannel(channelName)
         channelDetailPage.unSubscribePage()
+        time.sleep(2)
         self.pureMain.backButton().swipe("down")
-        time.sleep(1)
         Assert().assert_equal(False, self.pureMain.is_exits(channelName))
 
     @allure.story("播放历史用例")
@@ -158,6 +158,7 @@ class TestMyVideo():
         DetailPage.like().closeVideo()
 
         MyVideoPage = self.pureMain.goto_MyVideo()
+        time.sleep(1)
         LikeVideosPage = MyVideoPage.clickLikeVideos()
         Assert().assert_equal(True, self.pureMain.is_exits(homeVideoName1))
         LikeVideosPage.RandomPlay()
@@ -170,21 +171,19 @@ class TestMyVideo():
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
 
-        LikeVideosPage.clickVideo()
-        time.sleep(3)
-
-        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
-        DetailPage.closeVideo()
-
         LikeVideosPage.removeVideo(homeVideoName2)
         time.sleep(0.5)
         Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName2))
 
         LikeVideosPage.clickVideo()
         time.sleep(3)
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.dislike().closeVideo()
         self.pureMain.swipe("down")
-        Assert().assert_equal(False,self.pureMain.is_exits(homeVideoName1))
+        Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName1))
+
+
+
 
     @allure.story("PlayList功能用例")
     def test_Playlist_login(self):
@@ -212,4 +211,4 @@ class TestMyVideo():
 
         PlaylistPage.removeVideo(homeVideoName)
         time.sleep(0.5)
-        Assert().assert_equal(True, self.pureMain.is_exits(homeVideoName))
+        Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName))

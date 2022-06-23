@@ -10,8 +10,8 @@ share_app:
     by: id
     action: click
 clickSign_in:
-  - locator: Sign in
-    by: id
+  - locator: //XCUIElementTypeStaticText[@name="Sign in"]/../XCUIElementTypeButton
+    by: xpath
     action: click
 clipboardValue:
   - locator: Email or phone

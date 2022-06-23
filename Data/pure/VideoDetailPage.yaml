@@ -53,6 +53,10 @@ clickUpnext:
     by: xpath
     action: click
 
+clickVideo:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
 get_nowProgress:
   - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
     by: xpath
@@ -62,6 +66,6 @@ get_nowProgress:
     action: findtext
 
 closeVideo:
-  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
     by: xpath
     action: click

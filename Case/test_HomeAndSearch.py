@@ -1,5 +1,6 @@
 #  encoding: utf-8
 import sys
+import time
 
 import pytest
 
@@ -57,29 +58,32 @@ class TestHomeSearch():
 
     @allure.story("Home页mor按钮功能测试用例")
     def test_more_login(self):
+
+        # 举报内容
+        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
+        Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
+
         # 背景播放
         video_name = self.pureMain.getVideoName()
-        # self.pureMain.clickMore()
-        # Assert().assert_equal(True, self.pureMain.is_exits("Report Content"))
-        # self.pureMain.clickBgPlay()
-        # Assert().assert_in(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
-        # self.pureMain.closeVideo()
-        # 小窗播放
-        # self.pureMain.clickMore().clickPopPlay()
+        self.pureMain.clickMore()
+        Assert().assert_equal(True, self.pureMain.is_exits("Report Content"))
+        self.pureMain.clickBgPlay()
+        Assert().assert_equal(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
+        self.pureMain.closeVideo()
+
         # 分享
         self.pureMain.clickMore().clickShare()
         self.pureMain.click_Search().clipboardValue()
         Assert().assert_in(video_name, self.pureMain.driver.page_source)
         self.pureMain.backButton()
-        # 举报内容
-        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
-        Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
-        self.pureMain.AlertClickDone()
+
+
         # no interested
-        self.pureMain.clickMore().clickNotInterested()
-        Assert().assert_equal(False, self.pureMain.is_exits("Video removed"))
-        self.pureMain.NotInterestedUndo()
+        self.pureMain.clickMoreTwo().clickNotInterested()
         Assert().assert_equal(True, self.pureMain.is_exits("Video removed"))
+        self.pureMain.NotInterestedUndo()
+        time.sleep(1)
+        Assert().assert_equal(False, self.pureMain.is_exits("Video removed"))
 
         # 加入playlist和稍后看
         self.pureMain.clickMore().clickAddToPlaylist()
@@ -91,5 +95,32 @@ class TestHomeSearch():
         PlaylistPage.clickWatchLater()
         Assert().assert_equal(True, self.pureMain.is_exits(video_name))
         PlaylistPage.removeVideo(video_name)
+        self.pureMain.backButton().goto_Home()
+
+        # 小窗播放
+        self.pureMain.clickMore().clickPopPlay()
+        Assert().assert_equal(True, self.pureMain.is_exits("PIPUIView"))  # 断言是否小窗播放
+
+    @allure.story("channel页功能测试用例")
+    def test_channel(self):
+        # channel页功能
+        channel_name = self.pureMain.getChannelName()
+        ChannelPage = self.pureMain.clickchannel()
+        Assert().assert_equal(True, self.pureMain.is_exits("SUBSCRIBE"))
+        # 播放视频
+        DetailPage = ChannelPage.channelClickVideo()
+        time.sleep(3)
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
+        # 播放playlist
+        ChannelPage.clickVideosTag()
+        Assert().assert_equal(False, self.pureMain.is_exits("SUBSCRIBE"))
+        for i in ["Most popular", "Date added (oldest)", "Date added (newest)"]:
+            ChannelPage.channelSortBy(i)
+        ChannelPage.channelClickVideo()
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
+        #
+
 
 

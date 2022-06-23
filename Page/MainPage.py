@@ -16,6 +16,24 @@ class MainPage(BasePage):
         # 获取home页面的视频频道名
         return self.loadSteps(self.yaml_path, "getChannelName")
 
+    def channelClickVideo(self):
+        # 跳转到channel页
+        return self.loadSteps(self.yaml_path, "channelClickVideo")
+
+    def clickchannel(self):
+        # 跳转到channel页
+        self.loadSteps(self.yaml_path, "clickchannel")
+        return self
+
+    def clickVideosTag(self):
+        # 在channel页中点击videos tag
+        return self.loadSteps(self.yaml_path, "clickVideosTag")
+
+    def channelSortBy(self, var1):
+        # 在channel页中排序视频
+        return self.loadSteps(self.yaml_path, "channelSortBy", key=var1)
+
+
     def goto_Search(self, var1=None):
         # 跳转到me页
         self.loadSteps(self.yaml_path, "goto_Search", keyword=var1)
@@ -56,6 +74,11 @@ class MainPage(BasePage):
         self.loadSteps(self.yaml_path, "clickMore")
         return self
 
+    def clickMoreTwo(self):
+        # 主页点击第二个more按钮
+        self.loadSteps(self.yaml_path, "clickMoreTwo")
+        return self
+
     def clickBgPlay(self):
         # 主页点击背景播放按钮
         self.loadSteps(self.yaml_path, "clickBgPlay")
@@ -81,6 +104,16 @@ class MainPage(BasePage):
         self.loadSteps(self.yaml_path, "closeVideo")
         return self
 
+    def clickReportContent(self):
+        # 首页点击举报
+        self.loadSteps(self.yaml_path, "clickReportContent")
+        return self
+
+    def clickNotInterested(self):
+        # 首页点击NotInterested
+        self.loadSteps(self.yaml_path, "clickNotInterested")
+        return self
+
     def selectAndReport(self, var1):
         # 首页举报视频
         self.loadSteps(self.yaml_path, "selectAndReport", option=var1)
@@ -89,4 +122,19 @@ class MainPage(BasePage):
     def AlertClickDone(self):
         # 首页举报弹窗点击done
         self.loadSteps(self.yaml_path, "AlertClickDone")
+        return self
+
+    def NotInterestedUndo(self):
+        # 撤销NotInterested
+        self.loadSteps(self.yaml_path, "NotInterestedUndo")
+        return self
+
+    def clickAddToPlaylist(self):
+        # 首页加入playlist
+        self.loadSteps(self.yaml_path, "clickAddToPlaylist")
+        return self
+
+    def clickAddToWatchLater(self):
+        # 首页加入playlist
+        self.loadSteps(self.yaml_path, "clickAddToWatchLater")
         return self

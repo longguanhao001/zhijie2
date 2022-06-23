@@ -25,8 +25,7 @@ class TestMe():
     def test_bell_unlogin(self):
         MePage = self.pureMain.goto_Me()
         MePage.clickBell()
-        time.sleep(3)
-        Assert().assert_in("Email or phone", MePage.driver.page_source)
+        Assert().assert_equal(True, self.pureMain.is_exits("Email or phone"))
 
     @allure.story("分享app链接")
     def test_shareApp(self):
@@ -73,20 +72,28 @@ class TestMe():
         MePage = self.pureMain.goto_Me()
         MePage.clickBell()
         time.sleep(0.5)
-        Assert().assert_in("Notifications", self.pureMain.driver.page_source)
+        Assert().assert_equal(True, self.pureMain.is_exits("Notifications"))
         MePage.clickReply()
         time.sleep(0.5)
-        Assert().assert_in("Comments", self.pureMain.driver.page_source)
+        Assert().assert_equal(True, self.pureMain.is_exits("Comments"))
         MePage.clickComment()
         time.sleep(0.5)
-        Assert().assert_in("Replies", self.pureMain.driver.page_source)
+        Assert().assert_equal(True, self.pureMain.is_exits("Replies"))
         MePage.reply("i reply you")
-        # self.pureMain.DeiverWaitToast("delete grey box")
         time.sleep(1)
-        Assert().assert_in("delete grey box", self.pureMain.driver.page_source)
-        MePage.delReply()
+        Assert().assert_equal(True, self.pureMain.is_exits("delete grey box"))
+        while 1:
+            time.sleep(3)
+            times = 0
+            if "delete grey box" in self.pureMain.driver.page_source:
+                MePage.delReply()
+                times += 1
+                if times > 10: # 设置个上限避免死循环
+                    break
+            else:
+                break
         time.sleep(0.5)
-        Assert().assert_not_in("delete grey box", self.pureMain.driver.page_source)
+        Assert().assert_equal(False, self.pureMain.is_exits("delete grey box"))
         MePage.clickVideo()
         time.sleep(0.5)
-        Assert().assert_not_in("Replies", self.pureMain.driver.page_source)
+        Assert().assert_equal(False, self.pureMain.is_exits("Replies"))

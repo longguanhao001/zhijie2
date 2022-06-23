@@ -54,6 +54,7 @@ class MyVideoPage(BasePage):
     def clickPlaylist(self):
         # 点击Playlist
         self.loadSteps(self.yaml_path, "clickPlaylist")
+        return self
 
     def clickSign_in(self):
         # 点击Sign in
@@ -114,12 +115,4 @@ class MyVideoPage(BasePage):
         self.loadSteps(self.yaml_path, "clickLikeVideos")
         return self
 
-    def clickPlaylist(self):
-        # 点击Playlist
-        self.loadSteps(self.yaml_path, "clickPlaylist")
-        return self
 
-    def NotInterestedUndo(self):
-        # 撤销NotInterested
-        self.loadSteps(self.yaml_path, "NotInterestedUndo")
-        return self

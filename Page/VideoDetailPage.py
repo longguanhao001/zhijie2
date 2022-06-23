@@ -8,6 +8,10 @@ class VideoDetailPage(BasePage):
         # 跳转到登陆页后返回
         self.loadSteps(self.yaml_path, "LoginPageBack")
 
+    def clickVideo(self):
+        # 点击视频画面
+        return self.loadSteps(self.yaml_path, "clickVideo")
+
     def get_nowProgress(self):
         # 获取当前视频进度
         return self.loadSteps(self.yaml_path, "get_nowProgress")

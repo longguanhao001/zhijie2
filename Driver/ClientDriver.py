@@ -34,12 +34,12 @@ class ClientDriver(object):
             cur_path = os.path.dirname(os.getcwd())
             package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
             if "video.test.tools.os" not in result:
-                os.popen("/opt/homebrew/bin/ideviceinstaller -i '%s'" % package_path).read()
+                os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -i '%s'" % package_path).read()
                 os.remove(r"%s" % package_path)
             else:
                 # 先卸载再删除
-                os.popen("/opt/homebrew/bin/ideviceinstaller -U 'video.test.tools.os'").read()
-                os.popen("/opt/homebrew/bin/ideviceinstaller -i '%s'" % package_path).read()
+                os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -U 'video.test.tools.os'").read()
+                os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -i '%s'" % package_path).read()
                 os.remove(r"%s" % package_path)
             # 在这里决定执行哪个包的yaml文件
             if "daily" in file_name_list[0].lower():
@@ -58,8 +58,8 @@ class ClientDriver(object):
             caps["platformVersion"] = "14.6"
             caps["deviceName"] = "iPhone(2)"
             caps["app"] = "video.test.tools.os"
-            # caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
-            caps["udid"] = "auto"
+            caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
+            # caps["udid"] = "auto"
             caps['xcodeOrgId'] = '3L4QK9YSAV'
             caps['xcodeSigningId'] = "iPhone Developer"
             caps['autoAcceptAlerts'] = True
