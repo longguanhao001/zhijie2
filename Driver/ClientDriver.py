@@ -48,7 +48,8 @@ class ClientDriver(object):
                 cls.channel = "daily"
             else:
                 pass
-        except:
+        except Exception as e:
+            print(e)
             raise
 
     @classmethod
