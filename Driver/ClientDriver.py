@@ -36,7 +36,8 @@ class ClientDriver(object):
             cur_path = os.path.dirname(os.getcwd())
             package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
             if "video.test.tools.os" not in result:
-                os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -i '%s'" % package_path).read()
+                result = os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -i '%s'" % package_path).read()
+                print(result)
                 os.remove(r"%s" % package_path)
             else:
                 # 先卸载再删除
