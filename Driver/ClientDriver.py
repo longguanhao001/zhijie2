@@ -47,11 +47,13 @@ class ClientDriver(object):
             # 在这里决定执行哪个包的yaml文件
             if "daily" in file_name_list[0].lower():
                 cls.channel = "daily"
+            elif "go" in file_name_list[0].lower():
+                cls.channel = "go"
             else:
                 pass
         except Exception as e:
             print(e)
-            raise
+            pass
 
     @classmethod
     def restartApp(cls):
