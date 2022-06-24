@@ -49,7 +49,7 @@ class ClientDriver(object):
             else:
                 pass
         except:
-            pass
+            raise
 
     @classmethod
     def restartApp(cls):
