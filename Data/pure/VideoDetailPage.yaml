@@ -66,6 +66,6 @@ get_nowProgress:
     action: findtext
 
 closeVideo:
-  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
+  - locator: //XCUIElementTypeTabBar/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click

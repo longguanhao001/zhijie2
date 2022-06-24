@@ -29,7 +29,6 @@ class ClientDriver(object):
         # 安装app
         try:
             result = os.popen("/opt/homebrew/bin/ideviceinstaller -l").read()
-            print(result)
             # 获取安装包文件
             path = os.path.dirname(os.getcwd())
             file_name_list = os.listdir("%s/Package" % path)
