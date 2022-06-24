@@ -29,8 +29,10 @@ class ClientDriver(object):
         # 安装app
         try:
             result = os.popen("/opt/homebrew/bin/ideviceinstaller -l").read()
+            print(result)
             # 获取安装包文件
-            file_name_list = os.listdir("../Package")
+            path = os.path.dirname(os.getcwd())
+            file_name_list = os.listdir("%s/Package" % path)
             cur_path = os.path.dirname(os.getcwd())
             package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
             if "video.test.tools.os" not in result:
