@@ -2,29 +2,44 @@ LoginPageBack:
   - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: click
-
 like:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
     by: xpath
     action: click
-
 add_to:
   - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
     by: xpath
+    action: click
+Watchlater:
+  - locator: //XCUIElementTypeStaticText[@name="Watch later"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
+    action: click
+Playlist:
+  - locator: //XCUIElementTypeStaticText[@name="Auto"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
     action: click
 
 subsribe:
   - locator: SUBSCRIBE
     by: id
     action: click
-
+clickCancel:
+  - locator: Cancel
+    by: id
+    action: click
 dislike:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[2]
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton[2]
     by: xpath
     action: click
 
 getLikeCount:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
     by: xpath
     action: findtext
 
@@ -38,6 +53,10 @@ clickUpnext:
     by: xpath
     action: click
 
+clickVideo:
+  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+    by: xpath
+    action: click
 get_nowProgress:
   - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
     by: xpath
@@ -47,12 +66,6 @@ get_nowProgress:
     action: findtext
 
 closeVideo:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
-    by: xpath
-    action: click
-  - locator: videoDetail player backBtn
-    by: id
-    action: click
-  - locator: //XCUIElementTypeTabBar[@name="Tab Bar"]/../XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
     by: xpath
     action: click

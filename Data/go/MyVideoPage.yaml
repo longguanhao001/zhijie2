@@ -1,5 +1,5 @@
 getVideoName:
-  - locator: //XCUIElementTypeOther/../../XCUIElementTypeStaticText[2]
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText
     by: xpath
     action: findtext
 
@@ -27,6 +27,14 @@ turnOffHistory:
     by: id
     action: click
 
+turnOnHistory:
+  - locator: video detail pl icon list more
+    by: id
+    action: click
+  - locator: Turn on Local History
+    by: id
+    action: click
+
 goto_Main:
   - locator: HOME
     by: id
@@ -37,17 +45,105 @@ clickSign_in:
     by: id
     action: click
 
-clickPlaylist:
-  - locator: Playlist
+clickSubscribe:
+  - locator: Subscribe
     by: id
     action: click
 
-clickSubscribe:
-  - locator: Subscribe
+clickChannel:
+  - locator: ALL
+    by: id
+    action: click&sleep
+  - locator: $channelName
+    by: id
+    action: click
+
+unSubscribePage:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeButton
+    by: xpath
+    action: click
+
+clickHistory:
+  - locator: History
     by: id
     action: click
 
 LoginPageBack:
   - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
+    action: click
+
+delOneHistory:
+  - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage[2]
+    by: xpath
+    action: click
+  - locator: Remove
+    by: id
+    action: click
+
+delAllHistory:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+  - locator: Clear history
+    by: id
+    action: click
+  - locator: CLEAR
+    by: id
+    action: click
+
+closeHistory:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+  - locator: Turn off History
+    by: id
+    action: click
+openHistory:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+  - locator: Turn on History
+    by: id
+    action: click
+clickWatchLater:
+  - locator: Watch later
+    by: id
+    action: click
+RandomPlay:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+
+PlayAll:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeOther/XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+
+
+PlayAll_Share:
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeOther/XCUIElementTypeButton[3]
+    by: xpath
+    action: click
+
+clickVideo:
+  - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeStaticText
+    by: xpath
+    action: click
+
+removeVideo:
+  - locator: //XCUIElementTypeStaticText[@name="$video_name"]/../XCUIElementTypeImage[2]
+    by: xpath
+    action: click
+  - locator: Remove
+    by: id
+    action: click
+
+clickLikeVideos:
+  - locator: Liked videos
+    by: id
+    action: click
+clickPlaylist:
+  - locator: Auto
+    by: id
     action: click

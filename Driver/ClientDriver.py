@@ -10,7 +10,7 @@ class ClientDriver(object):
     # 后期从jenkins获取的参数
     device = "ios"
     env = "test"
-    channel = "pure"
+    channel = "go"
 
     @classmethod
     def deal_guideAndPop(cls, driver: WebDriver):

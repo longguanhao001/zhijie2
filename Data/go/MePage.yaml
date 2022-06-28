@@ -10,8 +10,8 @@ share_app:
     by: id
     action: click
 clickSign_in:
-  - locator: Sign in
-    by: id
+  - locator: //XCUIElementTypeStaticText[@name="Sign in"]/../XCUIElementTypeButton
+    by: xpath
     action: click
 clipboardValue:
   - locator: Email or phone
@@ -22,4 +22,71 @@ clipboardValue:
     action: longclick
   - locator: Paste
     by: id
+    action: click
+feedback:
+  - locator: Feedback
+    by: id
+    action: click
+  - locator: Submit feedback
+    by: id
+    action: click
+  - locator: Please describe the issue in details :)
+    by: id
+    text: $keyword
+    action: sendkeys
+  - locator: Create
+    by: id
+    action: click
+clickPolicy:
+  - locator: Privacy policy
+    by: id
+    action: click
+login:
+  - locator: Email or phone
+    by: id
+    action: click
+  - locator: Email or phone
+    by: id
+    text: $account
+    action: sendkeys&enter
+  - locator: Enter your password
+    by: id
+    action: click
+  - locator: Enter your password
+    by: id
+    text: $password
+    action: sendkeys&enter
+getUserName:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+clickReply:
+  - locator: //XCUIElementTypeCell/XCUIElementTypeOther
+    by: xpath
+    action: click
+clickComment:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeOther
+    by: xpath
+    action: click
+reply:
+  - locator: add a public reply...
+    by: id
+    action: click
+  - locator: add a public reply...
+    by: id
+    text: $keyword
+    action: sendkeys
+  - locator: SEND
+    by: id
+    action: click
+delReply:
+  - locator: delete grey box
+    by: id
+    action: click
+  - locator: CLEAR
+    by: id
+    action: click
+clickVideo:
+  - locator: //XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeOther
+    by: xpath
     action: click
