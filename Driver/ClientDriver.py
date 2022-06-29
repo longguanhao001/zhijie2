@@ -4,6 +4,9 @@ import time
 
 from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 class ClientDriver(object):
     driver: WebDriver
@@ -15,14 +18,23 @@ class ClientDriver(object):
     @classmethod
     def deal_guideAndPop(cls, driver: WebDriver):
         # 处理导航页和更新弹窗
-        time.sleep(3)
-        if "Next" in str(cls.driver.page_source):
-            driver.find_element(by="id", value="Next").click()
-            driver.find_element(by="id", value="Next").click()
-            driver.find_element(by="id", value="S T A R T").click()
-        time.sleep(3)
-        if "icon x" in str(cls.driver.page_source):
-            driver.find_element(by="id", value="icon x white delete").click()
+        # 显示等待toast存在
+        try:
+            toast_loc = ("id", "Next")
+            next_ele = WebDriverWait(driver, 6, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
+            if next_ele:
+                next_ele.click()
+                driver.find_element(by="id", value="Next").click()
+                driver.find_element(by="id", value="S T A R T").click()
+        except:
+            print("启动app无引导页")
+        try:
+            toast_loc = ("id", "icon x white delete")
+            ele = WebDriverWait(driver, 10, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
+            if ele:
+                ele.click()
+        except:
+            print("启动app无弹窗")
 
     @classmethod
     def installApp(cls):
