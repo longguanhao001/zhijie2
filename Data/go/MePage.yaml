@@ -3,14 +3,14 @@ clickBell:
     by: id
     action: click
 share_app:
-  - locator: Share PureTuber
+  - locator: Share GoTube
     by: id
     action: click
   - locator: Copy
     by: id
     action: click
 clickSign_in:
-  - locator: //XCUIElementTypeStaticText[@name="Sign in"]/../XCUIElementTypeButton
+  - locator: //XCUIElementTypeStaticText[@name="Sign in"]/..
     by: xpath
     action: click
 clipboardValue:
@@ -57,7 +57,7 @@ login:
     text: $password
     action: sendkeys&enter
 getUserName:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeStaticText
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText
     by: xpath
     action: findtext
 clickReply:

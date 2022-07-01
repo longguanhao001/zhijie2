@@ -54,16 +54,25 @@ clickUpnext:
     action: click
 
 clickVideo:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
     by: xpath
     action: click
 get_nowProgress:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
     by: xpath
     action: click
-  - locator: //XCUIElementTypeSlider
+  - locator: //XCUIElementTypeButton[@name="videoDetail player tofull btn"]/../XCUIElementTypeStaticText
     by: xpath
     action: findtext
+
+get_allProgress:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeButton[@name="videoDetail player tofull btn"]/../XCUIElementTypeStaticText[2]
+    by: xpath
+    action: findtext
+
 
 closeVideo:
   - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
