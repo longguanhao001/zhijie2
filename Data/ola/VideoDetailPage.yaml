@@ -1,0 +1,80 @@
+LoginPageBack:
+  - locator: //XCUIElementTypeWebView/../XCUIElementTypeOther/XCUIElementTypeButton
+    by: xpath
+    action: click
+like:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
+    by: xpath
+    action: click
+add_to:
+  - locator: //XCUIElementTypeStaticText[@name="Add to"]/..
+    by: xpath
+    action: click
+Watchlater:
+  - locator: //XCUIElementTypeStaticText[@name="Watch later"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
+    action: click
+Playlist:
+  - locator: //XCUIElementTypeStaticText[@name="Auto"]/../XCUIElementTypeButton
+    by: xpath
+    action: click
+  - locator: Done
+    by: id
+    action: click
+
+subsribe:
+  - locator: SUBSCRIBE
+    by: id
+    action: click
+clickCancel:
+  - locator: Cancel
+    by: id
+    action: click
+dislike:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton[2]
+    by: xpath
+    action: click
+
+getLikeCount:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
+    by: xpath
+    action: findtext
+
+getUpnextVideoName:
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+
+clickUpnext:
+  - locator: //XCUIElementTypeButton[@name="video icon more"]/../../XCUIElementTypeImage
+    by: xpath
+    action: click
+
+clickVideo:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
+    by: xpath
+    action: click
+get_nowProgress:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeButton[@name="videoDetail player tofull btn"]/../XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+
+get_allProgress:
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeButton[@name="videoDetail player tofull btn"]/../XCUIElementTypeStaticText[2]
+    by: xpath
+    action: findtext
+
+
+closeVideo:
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
+    by: xpath
+    action: click

@@ -111,6 +111,7 @@ class TestHomeSearch():
         DetailPage = ChannelPage.channelClickVideo()
         time.sleep(3)
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
 
         # 其他页面ß
         ChannelPage.clickAboutlTag()
@@ -124,6 +125,7 @@ class TestHomeSearch():
                 ChannelPage.channelSortBy(i)
         ChannelPage.channelClickVideo()
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
 
         # 播放playlist
         ChannelPage.clickPlaylistsTag()

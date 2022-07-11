@@ -1,0 +1,14 @@
+get_videoTitle:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+clipboardValue:
+  - locator: Search
+    by: id
+    action: click
+  - locator: Search
+    by: id
+    action: longclick
+  - locator: Paste
+    by: id
+    action: click
