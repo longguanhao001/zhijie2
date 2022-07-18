@@ -40,6 +40,12 @@ class MyVideoPage(BasePage):
         # 点击Subscribe
         self.loadSteps(self.yaml_path, "clickSubscribe")
         return self
+
+    def clickALL(self):
+        # 点击ALl
+        self.loadSteps(self.yaml_path, "clickALL")
+        return self
+
     def is_exits_channel(self):
         # 点击Subscribe
         try:

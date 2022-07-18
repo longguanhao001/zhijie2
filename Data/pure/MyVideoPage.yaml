@@ -48,10 +48,12 @@ clickSign_in:
 clickSubscribe:
   - locator: Subscribe
     by: id
-    action: click&sleep
+    action: click
+
+clickALL:
   - locator: ALL
     by: id
-    action: click
+    action: click&sleep
 
 is_exits_channel:
   - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText

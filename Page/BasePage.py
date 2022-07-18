@@ -13,6 +13,7 @@ class BasePage():
     driver = None
     back_list = [("id", "Retry")]
     path = os.path.dirname(os.getcwd())
+    error_times = 0
 
     def __init__(self):
         self.driver = self.getDriver()
@@ -31,6 +32,7 @@ class BasePage():
         #寻找元素的方法
         try:
             element = self.driver.find_element(*kv)
+            self.error_times = 0
         except:
             # 如果没找到元素，则处理异常后重试
             for i in self.back_list:
@@ -67,6 +69,7 @@ class BasePage():
             elif action == "findtext":
                 return element.text
             elif action == "longclick":
+                n = self.driver.get_clipboard_text()
                 TouchAction(self.driver).long_press(element).perform()
             elif action == "sendkeys":
                 text = str(step["text"])

@@ -59,9 +59,9 @@ class TestHomeSearch():
     @allure.story("Home页mor按钮功能测试用例")
     def test_more_login(self):
 
-        # 举报内容
-        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
-        Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
+        # 举报内容,弹窗会被自动点掉影响成功率
+        # self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
+        # Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
 
         # 背景播放
         video_name = self.pureMain.getVideoName()
@@ -71,11 +71,11 @@ class TestHomeSearch():
         Assert().assert_equal(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
         self.pureMain.closeVideo()
 
-        # 分享
-        self.pureMain.clickMore().clickShare()
-        self.pureMain.click_Search().clipboardValue()
-        Assert().assert_in(video_name, self.pureMain.driver.page_source)
-        self.pureMain.backButton()
+        # 分享,page_source会转译符号，影响成功率
+        # self.pureMain.clickMore().clickShare()
+        # self.pureMain.click_Search().clipboardValue()
+        # Assert().assert_in(video_name, self.pureMain.driver.page_source)
+        # self.pureMain.backButton()
 
 
         # no interested
@@ -90,11 +90,11 @@ class TestHomeSearch():
         self.pureMain.clickMore().clickAddToWatchLater()
         PlaylistPage = self.pureMain.goto_MyVideo().clickPlaylist()
         Assert().assert_equal(True, self.pureMain.is_exits(video_name))
-        PlaylistPage.removeVideo(video_name)
+        PlaylistPage.removeVideo()
         self.pureMain.backButton()
         PlaylistPage.clickWatchLater()
         Assert().assert_equal(True, self.pureMain.is_exits(video_name))
-        PlaylistPage.removeVideo(video_name)
+        PlaylistPage.removeVideo()
         self.pureMain.backButton().goto_Home()
 
         # 小窗播放

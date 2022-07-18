@@ -69,7 +69,7 @@ class TestMyVideo():
         SubscribePage = MyVideoPage.clickSubscribe()
         time.sleep(1)
         Assert().assert_equal(True, self.pureMain.is_exits(channelName))
-
+        MyVideoPage.clickALL()
         # 取关
         while SubscribePage.is_exits_channel():
             channelDetailPage = SubscribePage.clickChannel()
@@ -143,7 +143,7 @@ class TestMyVideo():
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
 
-        WatchLaterPage.removeVideo(homeVideoName)
+        WatchLaterPage.removeVideo()
         time.sleep(2)
         Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName))
 
@@ -174,7 +174,7 @@ class TestMyVideo():
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
 
-        LikeVideosPage.removeVideo(homeVideoName2)
+        LikeVideosPage.removeVideo()
         time.sleep(0.5)
         Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName2))
 
@@ -211,7 +211,6 @@ class TestMyVideo():
         time.sleep(3)
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
-
         while 1: # 删除全部视频
             try:
                 PlaylistPage.removeVideo()
