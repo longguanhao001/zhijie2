@@ -87,3 +87,26 @@ class TestVideoDetail():
         now_Progress = str(DetailPage.get_nowProgress()).replace("%", "")
         Assert().assert_greaterAndEqual(now_Progress, cur_Progress)
 
+    # @allure.story("视频详情页测试用例")
+    # @allure.step("local history功能")
+    # def test_playhistory_unlogin1(self):
+    #     homeVideoName = self.pureMain.getVideoName()
+    #     DetailPage = self.pureMain.goto_VideoDetail()
+    #     time.sleep(6)
+    #     cur_Progress = str(DetailPage.get_nowProgress1())
+    #     while int(cur_Progress) < 1:
+    #         time.sleep(6)
+    #         cur_Progress = str(DetailPage.get_nowProgress1())
+    #     DetailPage.closeVideo()
+    #     MyVideoPage = self.pureMain.goto_MyVideo()
+    #     Assert().assert_equal(True, self.pureMain.is_exits(homeVideoName))
+    #     MyVideoPage.goto_VideoDetail()
+    #     time.sleep(5)
+    #     while 1:  # 等待视频加载完成
+    #         DetailPage.clickVideo()
+    #         if self.pureMain.is_exits("videoDetail player pauseBtn"):
+    #             break
+    #         else:
+    #             time.sleep(5)
+    #     now_Progress = str(DetailPage.get_nowProgress1())
+    #     Assert().assert_greaterAndEqual(now_Progress, cur_Progress)

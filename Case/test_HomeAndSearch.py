@@ -119,22 +119,24 @@ class TestHomeSearch():
 
         # 播放视频
         ChannelPage.clickVideosTag()
-        Assert().assert_equal(True, self.pureMain.is_exits("Sort by"))
-        if self.pureMain.is_exits("Sort by"):
+        try:
+            Assert().assert_equal(True, self.pureMain.is_exits("Sort by"))
             for i in ["Most popular", "Date added (oldest)", "Date added (newest)"]:
                 ChannelPage.channelSortBy(i)
-        ChannelPage.channelClickVideo()
-        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
-        DetailPage.closeVideo()
+        finally:
+            ChannelPage.channelClickVideo()
+            Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+            DetailPage.closeVideo()
 
         # 播放playlist
         ChannelPage.clickPlaylistsTag()
         time.sleep(0.5)
-        if self.pureMain.is_exits("Sort by"):
+        try:
             for i in ["Last video added", "Date added (newest)"]:
                 ChannelPage.channelSortBy(i)
-        ChannelPage.channelClickPlaylist()
-        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        except:
+            ChannelPage.channelClickPlaylist()
+            Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
 
 
 

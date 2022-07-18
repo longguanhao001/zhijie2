@@ -1,3 +1,5 @@
+import time
+
 from Page.BasePage import BasePage
 
 
@@ -10,11 +12,21 @@ class VideoDetailPage(BasePage):
 
     def clickVideo(self):
         # 点击视频画面
-        return self.loadSteps(self.yaml_path, "clickVideo")
+        self.loadSteps(self.yaml_path, "clickVideo")
+        return self
 
     def get_nowProgress(self):
         # 获取当前视频进度
         return self.loadSteps(self.yaml_path, "get_nowProgress")
+
+    def get_nowProgress1(self):
+        # 获取当前视频进度
+        m, s = self.loadSteps(self.yaml_path, "get_nowProgress").split(':')
+        now_progress = int(m)*60+int(s)
+        time.sleep(3)
+        m, s = self.loadSteps(self.yaml_path, "get_allProgress").split('/')[1].split(':')
+        all_progress = int(m)*60+int(s)
+        return int(now_progress/all_progress*10)
 
     def like(self):
         # 点击点赞按钮
