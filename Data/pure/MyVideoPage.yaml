@@ -48,14 +48,19 @@ clickSign_in:
 clickSubscribe:
   - locator: Subscribe
     by: id
-    action: click
-
-clickChannel:
+    action: click&sleep
   - locator: ALL
     by: id
-    action: click&sleep
-  - locator: $channelName
-    by: id
+    action: click
+
+is_exits_channel:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText
+    by: xpath
+    action: findtext
+
+clickChannel:
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther
+    by: xpath
     action: click
 
 unSubscribePage:
@@ -132,7 +137,7 @@ clickVideo:
     action: click
 
 removeVideo:
-  - locator: //XCUIElementTypeStaticText[@name="$video_name"]/../XCUIElementTypeImage[2]
+  - locator: //XCUIElementTypeStaticText/../XCUIElementTypeImage[2]
     by: xpath
     action: click
   - locator: Remove

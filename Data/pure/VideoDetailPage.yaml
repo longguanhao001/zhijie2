@@ -53,15 +53,20 @@ clickUpnext:
     by: xpath
     action: click
 
+#clickVideo: 旧播放器
+#  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+#    by: xpath
+#    action: click
+
 clickVideo:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther
     by: xpath
     action: click
 get_nowProgress:
-  - locator: //XCUIElementTypeCollectionView/../XCUIElementTypeOther/XCUIElementTypeOther[2]
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther
     by: xpath
     action: click
-  - locator: //XCUIElementTypeSlider
+  - locator: //XCUIElementTypeOther/../../XCUIElementTypeStaticText
     by: xpath
     action: findtext
 

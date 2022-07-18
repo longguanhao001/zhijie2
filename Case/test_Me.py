@@ -67,6 +67,9 @@ class TestMe():
         username = MePage.getUserName()
         Assert().assert_equal(name, username)
 
+        # 处理掉测试数据
+
+
     @allure.story("登录后点击小铃铛")
     def test_bell_login(self):
         MePage = self.pureMain.goto_Me()

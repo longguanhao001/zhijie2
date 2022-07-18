@@ -71,10 +71,13 @@ class TestMyVideo():
         Assert().assert_equal(True, self.pureMain.is_exits(channelName))
 
         # 取关
-        channelDetailPage = SubscribePage.clickChannel(channelName)
-        channelDetailPage.unSubscribePage()
-        time.sleep(2)
-        self.pureMain.backButton().swipe("down")
+        while SubscribePage.is_exits_channel():
+            channelDetailPage = SubscribePage.clickChannel()
+            channelDetailPage.unSubscribePage()
+            time.sleep(2)
+            self.pureMain.backButton()
+            time.sleep(1)
+            self.pureMain.swipe("down")
         Assert().assert_equal(False, self.pureMain.is_exits(channelName))
 
     @allure.story("播放历史用例")
@@ -209,6 +212,10 @@ class TestMyVideo():
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
 
-        PlaylistPage.removeVideo(homeVideoName)
-        time.sleep(0.5)
+        while 1: # 删除全部视频
+            try:
+                PlaylistPage.removeVideo()
+                time.sleep(0.5)
+            except:
+                break
         Assert().assert_equal(False, self.pureMain.is_exits(homeVideoName))

@@ -40,10 +40,20 @@ class MyVideoPage(BasePage):
         # 点击Subscribe
         self.loadSteps(self.yaml_path, "clickSubscribe")
         return self
+    def is_exits_channel(self):
+        # 点击Subscribe
+        try:
+            channel = self.loadSteps(self.yaml_path, "is_exits_channel")
+            if channel is not None:
+                return True
+            else:
+                return False
+        except:
+            return False
 
-    def clickChannel(self, var1):
+    def clickChannel(self):
         # 点击关注页里对应的channel
-        self.loadSteps(self.yaml_path, "clickChannel", channelName=var1)
+        self.loadSteps(self.yaml_path, "clickChannel")
         return self
 
     def unSubscribePage(self):
@@ -105,9 +115,9 @@ class MyVideoPage(BasePage):
         self.loadSteps(self.yaml_path, "clickVideo")
         return self
 
-    def removeVideo(self, var1):
+    def removeVideo(self):
         # 删除watch later
-        self.loadSteps(self.yaml_path, "removeVideo", video_name=var1)
+        self.loadSteps(self.yaml_path, "removeVideo")
         return self
 
     def clickLikeVideos(self):
