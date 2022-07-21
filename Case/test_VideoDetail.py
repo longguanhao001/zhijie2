@@ -69,8 +69,11 @@ class TestVideoDetail():
         homeVideoName = self.pureMain.getVideoName()
         DetailPage = self.pureMain.goto_VideoDetail()
         time.sleep(10)
-        min, sec = str(DetailPage.get_nowProgress()).split(":")
-        cur_Progress = int(min)*60+int(sec)
+        progress = DetailPage.get_nowProgress()
+        if progress.count(":") == 1:
+            progress = "00:"+progress
+        hour, min, sec = progress.split(":")
+        cur_Progress = int(hour)*3600+int(min)*60+int(sec)
         DetailPage.closeVideo()
         MyVideoPage = self.pureMain.goto_MyVideo()
         Assert().assert_equal(True, self.pureMain.is_exits(homeVideoName))
@@ -82,8 +85,11 @@ class TestVideoDetail():
                 break
             else:
                 time.sleep(5)
-        min, sec = str(DetailPage.get_nowProgress()).split(":")
-        now_Progress = int(min) * 60 + int(sec)
+        progress = DetailPage.get_nowProgress()
+        if progress.count(":") == 1:
+            progress = "00:" + progress
+        hour, min, sec = progress.split(":")
+        now_Progress = int(hour) * 3600 + int(min) * 60 + int(sec)
         Assert().assert_greaterAndEqual(now_Progress, cur_Progress)
 
     # @allure.story("视频详情页测试用例")

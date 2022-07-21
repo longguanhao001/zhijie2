@@ -75,3 +75,13 @@ class MePage(BasePage):
         # 点击视频
         self.loadSteps(self.yaml_path, "clickVideo")
         return self
+
+
+    def changeChannel(self, var1):
+        # 查看是否有debug入口
+        debug = self.loadSteps(self.yaml_path, "isDebug")
+        if debug != None:
+            # 打开debug入口
+            self.loadSteps(self.yaml_path, "openDebug")
+        self.loadSteps(self.yaml_path, "changeChannel", channel=var1)
+        return self

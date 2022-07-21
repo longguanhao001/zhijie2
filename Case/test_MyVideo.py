@@ -65,9 +65,9 @@ class TestMyVideo():
         time.sleep(3)
         DetailPage.subsribe().closeVideo()
         MyVideoPage = self.pureMain.goto_MyVideo()
-        time.sleep(1)
+        time.sleep(3)
         SubscribePage = MyVideoPage.clickSubscribe()
-        time.sleep(1)
+        time.sleep(3)
         Assert().assert_equal(True, self.pureMain.is_exits(channelName))
         MyVideoPage.clickALL()
         # 取关

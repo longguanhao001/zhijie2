@@ -60,8 +60,9 @@ class TestHomeSearch():
     def test_more_login(self):
 
         # 举报内容,弹窗会被自动点掉影响成功率
-        # self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
+        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
         # Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
+        self.pureMain.DeiverWaitDisappear("id","Report Success")
 
         # 背景播放
         video_name = self.pureMain.getVideoName()
@@ -72,8 +73,8 @@ class TestHomeSearch():
         self.pureMain.closeVideo()
 
         # 分享,page_source会转译符号，影响成功率
-        # self.pureMain.clickMore().clickShare()
-        # self.pureMain.click_Search().clipboardValue()
+        self.pureMain.clickMore().clickShare()
+        #self.pureMain.click_Search().clipboardValue()
         # Assert().assert_in(video_name, self.pureMain.driver.page_source)
         # self.pureMain.backButton()
 
@@ -113,30 +114,27 @@ class TestHomeSearch():
         Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
         DetailPage.closeVideo()
 
-        # 其他页面ß
+        # 其他页面
         ChannelPage.clickAboutlTag()
         ChannelPage.clickChannelTag()
 
         # 播放视频
         ChannelPage.clickVideosTag()
-        try:
-            Assert().assert_equal(True, self.pureMain.is_exits("Sort by"))
+        if self.pureMain.is_exits("Sort by"):
             for i in ["Most popular", "Date added (oldest)", "Date added (newest)"]:
                 ChannelPage.channelSortBy(i)
-        finally:
-            ChannelPage.channelClickVideo()
-            Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
-            DetailPage.closeVideo()
+        ChannelPage.channelClickVideo()
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        DetailPage.closeVideo()
 
         # 播放playlist
         ChannelPage.clickPlaylistsTag()
         time.sleep(0.5)
-        try:
+        if self.pureMain.is_exits("Sort by"):
             for i in ["Last video added", "Date added (newest)"]:
                 ChannelPage.channelSortBy(i)
-        except:
-            ChannelPage.channelClickPlaylist()
-            Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
+        ChannelPage.channelClickPlaylist()
+        Assert().assert_equal(True, self.pureMain.is_exits("Add to"))
 
 
 

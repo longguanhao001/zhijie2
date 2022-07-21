@@ -23,6 +23,38 @@ clipboardValue:
   - locator: Paste
     by: id
     action: click
+isDebug:
+  - locator: Settings
+    by: id
+    action: click
+  - locator: Debug
+    by: id
+    action: findtext
+openDebug:
+  - locator: Title
+      by: id
+      action: sendkeys
+      text: zxcv4321
+  - locator: CHANGE
+      by: id
+      action: click
+changeChannel:
+  - locator: Debug
+    by: id
+    action: click
+  - locator: App Info
+    by: id
+    action: click
+  - locator: Cha
+    by: id
+    action: click
+  - locator: Title
+    by: id
+    action: sendkeys
+    text: $channel
+  - locator: CHANGE
+    by: id
+    action: click
 feedback:
   - locator: Feedback
     by: id

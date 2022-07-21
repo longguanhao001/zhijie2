@@ -3,7 +3,7 @@ LoginPageBack:
     by: xpath
     action: click
 like:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeButton[2]
     by: xpath
     action: click
 add_to:
@@ -34,12 +34,12 @@ clickCancel:
     by: id
     action: click
 dislike:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton[2]
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeButton[3]
     by: xpath
     action: click
 
 getLikeCount:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeButton
+  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeButton/XCUIElementTypeStaticText
     by: xpath
     action: findtext
 
@@ -58,10 +58,10 @@ clickVideo:
     by: xpath
     action: click
 get_nowProgress:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther
+  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther
     by: xpath
     action: click
-  - locator: //XCUIElementTypeButton[@name="videoDetail player tofull btn"]/../XCUIElementTypeStaticText
+  - locator: //XCUIElementTypeOther/../../XCUIElementTypeStaticText
     by: xpath
     action: findtext
 
