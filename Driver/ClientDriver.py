@@ -21,12 +21,15 @@ class ClientDriver(object):
         # 处理导航页和更新弹窗
         # 显示等待
         if cls.firstopen == True:
-            toast_loc = ("id", "Next")
-            next_ele = WebDriverWait(driver, 5, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
-            if next_ele:
-                next_ele.click()
-                driver.find_element(by="id", value="Next").click()
-                driver.find_element(by="id", value="S T A R T").click()
+            try:
+                toast_loc = ("id", "Next")
+                next_ele = WebDriverWait(driver, 5, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
+                if next_ele:
+                    next_ele.click()
+                    driver.find_element(by="id", value="Next").click()
+                    driver.find_element(by="id", value="S T A R T").click()
+            except:
+                print("启动app无弹窗")
         try:
             toast_loc = ("id", "icon x white delete")
             ele = WebDriverWait(driver, 5, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
