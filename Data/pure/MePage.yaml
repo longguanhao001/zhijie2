@@ -34,25 +34,33 @@ openDebug:
   - locator: Settings
     by: id
     action: quick_click
-  - locator: Title
-    by: id
+  - locator: //XCUIElementTypeTextField
+    by: xpath
     action: sendkeys
     text: zxcv4321
   - locator: CHANGE
     by: id
     action: click
-changeChannel:
+isDebugMode:
   - locator: Debug
     by: id
     action: click
+  - locator: //XCUIElementTypeSwitch
+    by: xpath
+    action: findtext
+openDebugMode:
+  - locator: //XCUIElementTypeSwitch
+    by: xpath
+    action: click
+changeChannel:
   - locator: App Info
     by: id
     action: click
   - locator: Cha
     by: id
     action: click
-  - locator: Title
-    by: id
+  - locator: //XCUIElementTypeTextField
+    by: xpath
     action: sendkeys
     text: $channel
   - locator: CHANGE

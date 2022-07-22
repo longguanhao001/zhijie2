@@ -152,3 +152,15 @@ AlertClickDone:
   - locator: Done
     by: id
     action: click
+find_FeedAds:
+  - locator: //XCUIElementTypeImage/../../../XCUIElementTypeButton
+    by: xpath
+    action: findtext
+find_HistoryAds:
+  - locator: web dialog
+    by: id
+    action: findtext
+find_BackToApp_Ads:
+  - locator: //XCUIElementTypeProgressIndicator[@name="Progress"]
+    by: xpath
+    action: findtext

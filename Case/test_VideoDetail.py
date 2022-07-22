@@ -69,6 +69,7 @@ class TestVideoDetail():
         homeVideoName = self.pureMain.getVideoName()
         DetailPage = self.pureMain.goto_VideoDetail()
         time.sleep(10)
+        self.pureMain.DeiverWaitDisappear("id", "iap video close")
         progress = DetailPage.get_nowProgress()
         if progress.count(":") == 1:
             progress = "00:"+progress
@@ -79,6 +80,7 @@ class TestVideoDetail():
         Assert().assert_equal(True, self.pureMain.is_exits(homeVideoName))
         MyVideoPage.goto_VideoDetail()
         time.sleep(10)
+        self.pureMain.DeiverWaitDisappear("id", "iap video close")
         while 1:  # 等待视频加载完成
             DetailPage.clickVideo()
             if self.pureMain.is_exits("videoDetail player pauseBtn"):

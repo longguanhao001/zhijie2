@@ -1,3 +1,5 @@
+import time
+
 from Page.BasePage import BasePage
 from Page.MePage import MePage
 from Page.MyVideoPage import MyVideoPage
@@ -169,3 +171,57 @@ class MainPage(BasePage):
         # 首页加入playlist
         self.loadSteps(self.yaml_path, "clickAddToWatchLater")
         return self
+
+    def find_FeedAds(self,page):
+        for i in range(3):
+            try:
+                if page != "Search_Result":
+                    if page != "Detail":
+                        result = self.loadSteps(self.yaml_path, "find_FeedAds")
+                    else:
+                        result = self.loadSteps(self.yaml_path, "find_DetailFeedAds")
+                else:
+                    result = self.loadSteps(self.yaml_path, "find_SearchResultAds")
+            except:
+                result = False
+            if result not in ["video icon more", False]:
+                return result
+            else:
+                self.swipe("up")
+        return False
+
+
+    def findAds(self, page):
+        # 找各个广告位
+        if page == "Featured":
+            self.DeiverWaitExist("id", "Trending")
+            result = self.find_FeedAds(page)
+        elif page == "Trending":
+            self.loadSteps(self.yaml_path, "changeTag", TagName="Trending")
+            result = self.find_FeedAds(page)
+        elif page == "Search_Result":
+            self.loadSteps(self.yaml_path, "goto_Search", keyword="dulipa")
+            result = self.find_FeedAds(page)
+            self.backButton()
+        elif page == "Search_History":
+            self.loadSteps(self.yaml_path, "click_Search")
+            try:
+                result = self.loadSteps(self.yaml_path, "find_HistoryAds")
+            except:
+                result = False
+            self.backButton()
+        elif page == "Detail":
+            self.loadSteps(self.yaml_path, "goto_VideoDetail")
+            time.sleep(15)
+            result = self.find_FeedAds(page)
+            self.swipe("down")
+            self.closeVideo()
+        else:
+            try:
+                result = self.loadSteps(self.yaml_path, "find_BackToApp_Ads")
+            except:
+                result = False
+        if result:
+            return True
+        else:
+            return False

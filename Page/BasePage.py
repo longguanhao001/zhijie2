@@ -71,6 +71,10 @@ class BasePage():
             elif action == "longclick":
                 n = self.driver.get_clipboard_text()
                 TouchAction(self.driver).long_press(element).perform()
+            elif action == "quick_click":
+                for i in range(7):
+                    element.click()
+                    time.sleep(0.2)
             elif action == "sendkeys":
                 text = str(step["text"])
                 for k, v in kwargs.items(): # 参数化text段

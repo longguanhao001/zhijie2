@@ -80,8 +80,12 @@ class MePage(BasePage):
     def changeChannel(self, var1):
         # 查看是否有debug入口
         debug = self.loadSteps(self.yaml_path, "isDebug")
-        if debug != None:
+        if debug == None:
             # 打开debug入口
             self.loadSteps(self.yaml_path, "openDebug")
+        debugMode = self.loadSteps(self.yaml_path, "isDebugMode")
+        if debugMode == '0':
+            # 打开debug模式
+            self.loadSteps(self.yaml_path, "openDebugMode")
         self.loadSteps(self.yaml_path, "changeChannel", channel=var1)
         return self
