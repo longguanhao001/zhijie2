@@ -31,13 +31,16 @@ isDebug:
     by: id
     action: findtext
 openDebug:
+  - locator: Settings
+    by: id
+    action: quick_click
   - locator: Title
-      by: id
-      action: sendkeys
-      text: zxcv4321
+    by: id
+    action: sendkeys
+    text: zxcv4321
   - locator: CHANGE
-      by: id
-      action: click
+    by: id
+    action: click
 changeChannel:
   - locator: Debug
     by: id
