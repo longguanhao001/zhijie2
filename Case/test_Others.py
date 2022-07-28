@@ -33,6 +33,6 @@ class TestMyVideo():
                 ad_list.append(page)
         if len(ad_list) < len(ad_map):
             print("部分广告位没有找到，%s" % list(set(ad_map).difference(set(ad_list))))
-            Assert().assert_equal(1, 2)
+            Assert().assert_equal("部分广告位没有找到", str(set(ad_map).difference(set(ad_list))))
 
 

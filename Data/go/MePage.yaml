@@ -51,7 +51,7 @@ login:
     action: sendkeys&enter
   - locator: Enter your password
     by: id
-    action: click
+    action: click&sleep
   - locator: Enter your password
     by: id
     text: $password
