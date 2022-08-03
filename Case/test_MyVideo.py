@@ -190,6 +190,7 @@ class TestMyVideo():
 
     @allure.story("PlayList功能用例")
     def test_Playlist_login(self):
+        self.pureMain.DeiverWaitExist("id", "Trending")
         homeVideoName = self.pureMain.getVideoName()
         DetailPage = self.pureMain.goto_VideoDetail()
         time.sleep(3)

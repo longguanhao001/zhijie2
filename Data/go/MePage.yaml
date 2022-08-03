@@ -65,8 +65,16 @@ clickReply:
     by: xpath
     action: click
 clickComment:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell[2]/XCUIElementTypeOther
-    by: xpath
+  - locator: REPLIES
+    by: id
+    action: click
+clickComment1:
+  - locator: 1REPLIES
+    by: id
+    action: click
+clickComment2:
+  - locator: 2REPLIES
+    by: id
     action: click
 reply:
   - locator: add a public reply...

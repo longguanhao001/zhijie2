@@ -19,6 +19,9 @@ class TestMyVideo():
         # 截图
         self.pureMain.save_screenShot()
 
+    def test_first_changeChannel(self):
+        MePage = self.pureMain.goto_Me()
+        MePage.changeChannel("auto_test")
 
     @allure.story("广告位测试")
     def test_end_CheckAds(self):

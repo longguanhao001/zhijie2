@@ -65,7 +65,8 @@ class VideoDetailPage(BasePage):
 
     def subsribe(self):
         # 点击点赞按钮
-        self.loadSteps(self.yaml_path, "subsribe")
+        if self.is_exits("SUBSCRIBE"):
+            self.loadSteps(self.yaml_path, "subsribe")
         return self
 
     def open_comment(self):

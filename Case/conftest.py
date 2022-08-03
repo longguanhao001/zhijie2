@@ -33,6 +33,7 @@ def pytest_collection_modifyitems(items):
     unlogin = []
     login = []
     end = []
+    first = []
     for item in items:
         if "_login" in item.name:
             if item.name == "test_login":
@@ -41,9 +42,11 @@ def pytest_collection_modifyitems(items):
                 login.append(item)
         elif "_end" in item.name:
             end.append(item)
+        elif "_first" in item.name:
+            first.append(item)
         else:
             unlogin.append(item)
-    caselist = unlogin+login+end
+    caselist = first+unlogin+login+end
     items.clear()
     for cases in caselist:
         items.append(cases)

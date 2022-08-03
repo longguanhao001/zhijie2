@@ -64,8 +64,9 @@ class TestMe():
             name = "Vivopure Hu"
             # MePage.clickSign_in().login("正式账号")
         time.sleep(10)
-        username = MePage.getUserName()
-        Assert().assert_equal(name, username)
+        # username = MePage.getUserName()
+        # Assert().assert_equal(name, username)
+        Assert().assert_in(name, MePage.driver.page_source)
 
         # 处理掉测试数据
 
@@ -79,7 +80,11 @@ class TestMe():
         MePage.clickReply()
         time.sleep(0.5)
         Assert().assert_equal(True, self.pureMain.is_exits("Comments"))
-        MePage.clickComment()
+        for i in range(3):
+            try:
+                MePage.clickComment()
+            except:
+                self.pureMain.driver.swipe("up")
         time.sleep(0.5)
         Assert().assert_equal(True, self.pureMain.is_exits("Replies"))
         MePage.reply("i reply you")
