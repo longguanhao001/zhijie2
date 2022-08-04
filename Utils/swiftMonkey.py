@@ -84,17 +84,19 @@ if __name__ == '__main__':
 
         else:
             print("今天已经上报过该崩溃")
-    # 测试群
-    token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
-    secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
-    # 正式群
-    # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
-    # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
-    dingdata = {'msgtype': 'markdown',
-                'markdown': {'title': 'Monkey Test for ' + version,
-                             'text': text},
-                # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
-                }
-    dingding_bysign(dingdata, token, secret)
+    if text:
+        text= "Monkey Test for %s\n\n%s Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (version,num,text)
+        # 测试群
+        token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
+        secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
+        # 正式群
+        # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
+        # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
+        dingdata = {'msgtype': 'markdown',
+                    'markdown': {'title': 'Monkey Test for ' + version,
+                                 'text': text},
+                    # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
+                    }
+        dingding_bysign(dingdata, token, secret)
 
     # 记录截图
