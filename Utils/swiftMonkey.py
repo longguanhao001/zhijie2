@@ -1,6 +1,10 @@
+import base64
+import hashlib
+import hmac
 import os
 import re
 import time
+import urllib
 
 import requests
 from tinydb import TinyDB, Query
@@ -12,7 +16,8 @@ def _getSign(secret):
     :param secret: 秘钥地址
     :return: 时间戳、签名
     '''
-    timestamp = str(round(time.time() * 1000))
+    timestamp = round(time.time() * 1000)
+    timestamp = str(timestamp)
     secret_enc = secret.encode('utf-8')
     string_to_sign = '{}\n{}'.format(timestamp, secret)
     string_to_sign_enc = string_to_sign.encode('utf-8')
