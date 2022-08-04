@@ -67,13 +67,13 @@ if __name__ == '__main__':
             table.insert({"reportName": f})
             report = open("%s/%s" % (path, f), "r")
             data = report.read()
-            time = re.findall(r'Time:(.*?)\.', data)[0]
-            time = str(time).replace(" ", "")
+            report_time = re.findall(r'Time:(.*?)\.', data)[0]
+            report_time = str(report_time).replace(" ", "")
             version = re.findall(r'Version:(.*?)\(', data)[0]
             version = str(version).replace(" ", "")
             OS_version = re.findall(r'OS Version:(.*?)\n', data)[0]
             OS_version = str(OS_version).replace(" ", "")
-            print("%s,%s,%s" % (time, version, OS_version))
+            print("%s,%s,%s" % (report_time, version, OS_version))
             # 测试群
             token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
             secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
@@ -81,7 +81,7 @@ if __name__ == '__main__':
             # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
             # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
             dingdata = {'msgtype': 'markdown',
-                        'markdown': {'title': 'Monkey Test for ' + version, 'text': '1 Carsh&ANR\nreportTime:%s\ntestDevices:%s\n请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2'%(time, OS_version)},
+                        'markdown': {'title': 'Monkey Test for ' + version, 'text': '1 Carsh&ANR\nreportTime:%s\ntestDevices:%s\n请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2'%(report_time, OS_version)},
                         # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
                         }
             dingding_bysign(dingdata, token, secret)
