@@ -80,12 +80,12 @@ if __name__ == '__main__':
             print("%s,%s,%s" % (report_time, version, OS_version))
             print("上报dingding和bug")
             num += 1
-            text += '#### **<font color=#008000>' + version + '</font>** finished:\n\n<font color=#A0522D>' + report_time + '</font>\n\n<font color=#A0522D>' + OS_version + '</font>\n\n'
+            text += '<font color=#A0522D>' + report_time + '</font>,<font color=#A0522D>' + OS_version + '</font>\n\n'
 
         else:
             print("今天已经上报过该崩溃")
     if text:
-        text= "Monkey Test for %s\n\n%s Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (version,num,text)
+        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (version,num,text)
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
