@@ -6,7 +6,7 @@ if __name__ == '__main__':
     # 扫描崩溃
     fileList = []
     path = "/Users/vanced/Downloads/crashreport"
-    for root, dirs, files in os.walk("../", topdown=False):
+    for root, dirs, files in os.walk(path, topdown=False):
         for f in files:
             if "PureTuber" in f:
                 fileList.append(f)
