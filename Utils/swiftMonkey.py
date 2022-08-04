@@ -23,9 +23,11 @@ if __name__ == '__main__':
         # 查询一个用户名为Sally的数据
         query_data = table.search(User.reportName == f)
         if len(query_data) < 1:
-            print("今天已经上报过该崩溃")
-        else:
+            # 上报dingding+提bug
             table.insert({"reportName": f})
             print("上报dingding和bug")
-            # 上报dingding+提bug
+
+        else:
+            print("今天已经上报过该崩溃")
+
     # 记录截图
