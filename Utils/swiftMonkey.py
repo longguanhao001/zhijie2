@@ -1,5 +1,6 @@
 import os
 import time
+from tinydb import TinyDB, Query
 
 if __name__ == '__main__':
   	#   执行monkey
@@ -13,5 +14,18 @@ if __name__ == '__main__':
             if "PureTuber" in f and date_str in f:
                 fileList.append(f)
     print(fileList)
-    # 上报dingding+提bug
+    # 数据库检验bug是否存在，不存在的话就上报
+    db = TinyDB("database.json")
+    table = db.table("iOSMonkey")
+    for f in fileList:
+        # 创建一个用户查询对象
+        User = Query()
+        # 查询一个用户名为Sally的数据
+        query_data = table.search(User.reportName == f)
+        if len(query_data) < 1:
+            print("今天已经上报过该崩溃")
+        else:
+            table.insert({"reportName": f})
+            print("上报dingding和bug")
+            # 上报dingding+提bug
     # 记录截图
