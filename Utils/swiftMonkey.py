@@ -1,4 +1,5 @@
 import os
+import re
 import time
 from tinydb import TinyDB, Query
 
@@ -25,6 +26,12 @@ if __name__ == '__main__':
         if len(query_data) < 1:
             # 上报dingding+提bug
             table.insert({"reportName": f})
+            report = open("%s/%s" % (path, f), "r")
+            data = report.read()
+            time = re.findall(r'Time:(.*?)\.', data)[0]
+            version = re.findall(r'Version:(.*?)\(', data)[0]
+            OS_version = re.findall(r'OS Version:(.*?)\n', data)[0]
+            print("%s,%s,%s" % (time, version, OS_version))
             print("上报dingding和bug")
 
         else:
