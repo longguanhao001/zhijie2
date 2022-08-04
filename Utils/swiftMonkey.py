@@ -58,6 +58,9 @@ if __name__ == '__main__':
     # 数据库检验bug是否存在，不存在的话就上报
     db = TinyDB("database.json")
     table = db.table("iOSMonkey")
+    # 记录今天未上报的crash数量
+    num = 0
+    text = ""
     for f in fileList:
         # 创建一个用户查询对象
         User = Query()
@@ -75,20 +78,23 @@ if __name__ == '__main__':
             OS_version = re.findall(r'OS Version:(.*?)\n', data)[0]
             OS_version = str(OS_version).replace(" ", "")
             print("%s,%s,%s" % (report_time, version, OS_version))
-            # 测试群
-            token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
-            secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
-            # 正式群
-            # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
-            # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
-            dingdata = {'msgtype': 'markdown',
-                        'markdown': {'title': 'Monkey Test for ' + version, 'text': '1 Carsh&ANR\nreportTime:%s\ntestDevices:%s\n请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2'%(report_time, OS_version)},
-                        # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
-                        }
-            dingding_bysign(dingdata, token, secret)
             print("上报dingding和bug")
+            num += 1
+            text += '#### **<font color=#008000>' + version + '</font>** finished:\n\n<font color=#A0522D>' + report_time + '</font>\n\n<font color=#A0522D>' + OS_version + '</font>\n\n'
 
         else:
             print("今天已经上报过该崩溃")
+    # 测试群
+    token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
+    secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
+    # 正式群
+    # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
+    # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
+    dingdata = {'msgtype': 'markdown',
+                'markdown': {'title': 'Monkey Test for ' + version,
+                             'text': text},
+                # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
+                }
+    dingding_bysign(dingdata, token, secret)
 
     # 记录截图
