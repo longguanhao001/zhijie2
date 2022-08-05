@@ -66,6 +66,7 @@ class TestMe():
         time.sleep(10)
         # username = MePage.getUserName()
         # Assert().assert_equal(name, username)
+        self.pureMain.DeiverWaitExist("id", "Settings")
         Assert().assert_in(name, MePage.driver.page_source)
 
         # 处理掉测试数据
