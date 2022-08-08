@@ -138,5 +138,5 @@ if __name__ == '__main__':
         dingding_bysign(dingdata, token, secret)
         # CreateJiraBug(project, title, desc, assignee='', fixedver=''):
         #创建jira bug
-        CreateJiraBug("PTI", "%s Crash,test for monkey" % version, text)
+        CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     # 记录截图
