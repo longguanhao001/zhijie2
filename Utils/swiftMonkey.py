@@ -5,10 +5,12 @@ import json
 import os
 import re
 import time
+import traceback
 import urllib
 
 import requests
 from tinydb import TinyDB, Query
+from jira import JIRA
 
 
 def _getSign(secret):
@@ -43,8 +45,44 @@ def dingding_bysign(data, assess_token, secret):
     print(r.text)
     return r.text
 
+def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
+    # 报bug
+    try:
+        print('Report bug: ' + desc)
+        jira_server = 'http://47.242.115.120:8283'  # jira地址
+        jira_username = 'Flat'  # 用户名
+        jira_password = 'flat175246'  # 密码
+        jira = JIRA(basic_auth=(jira_username, jira_password), options={'server': jira_server})
+
+        if project and title:
+            try:
+                if '' == fixedver:
+                    jira.create_issue(project=str(project), summary=str(title),
+                                      description=str(desc),assignee={'name': assignee},
+                                      priority={'name': "High"},
+                                      issuetype={'name': 'BUG'})
+                else:
+                    jira.create_issue(project=str(project), summary=str(title),
+                                      description=str(desc), assignee={'name': assignee},
+                                      priority={'name': "High"}, fixVersions=[{'name': fixedver}],
+                                      issuetype={'name': 'BUG'}, components=[{'name': 'Monkey'}])
+                result = {'status': 1}
+                print(result)
+                return result
+            except Exception as e:
+                result = {'status': 0, 'error': str(traceback.format_exc())}
+                print(result)
+                return result
+        else:
+            result = {'status': 0, 'msg': 'no project or title'}
+            print(result)
+            return result
+    except Exception as e:
+        print(str(e))
+
+
 if __name__ == '__main__':
-  	#   执行monkey
+  	# 执行monkey
     # 记录日志
     # 扫描崩溃
     fileList = []
@@ -52,7 +90,7 @@ if __name__ == '__main__':
     date_str = time.strftime('%m-%d', time.localtime())
     for root, dirs, files in os.walk(path, topdown=False):
         for f in files:
-            if "PureTuber" in f and date_str in f:
+            if "PureTuber" in f and date_str in f and "wakeups_" not in f:
                 fileList.append(f)
     print(fileList)
     # 数据库检验bug是否存在，不存在的话就上报
@@ -71,7 +109,7 @@ if __name__ == '__main__':
             table.insert({"reportName": f})
             report = open("%s/%s" % (path, f), "r")
             data = report.read()
-            report_time = re.findall(r'Time:(.*?)\.', data)[0]
+            report_time = re.findall(r'/Time:(.*?)\.', data)[0]
             report_time = str(report_time).replace(" ", "")
             version = re.findall(r'Version:(.*?)\(', data)[0]
             version = str(version).replace(" ", "")
@@ -98,5 +136,7 @@ if __name__ == '__main__':
                     # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
                     }
         dingding_bysign(dingdata, token, secret)
-
+        # CreateJiraBug(project, title, desc, assignee='', fixedver=''):
+        #创建jira bug
+        CreateJiraBug("PTI", "%s Crash,test for monkey" % version, text)
     # 记录截图
