@@ -102,7 +102,7 @@ class BasePage():
             self.driver.swipe(1/7*x, 1/2*y, 5/7*x, 1/2*y, 200)
         elif keyword.lower() == "left":
             self.driver.swipe(6/7*x, 1/2*y, 1/7*x, 1/2*y, 100)
-        time.sleep(2)
+        time.sleep(0.5)
 
     def DeiverWaitExist(self,by,keyword):
         #显示等待toast存在
