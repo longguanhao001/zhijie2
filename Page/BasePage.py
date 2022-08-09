@@ -125,8 +125,9 @@ class BasePage():
 
     def is_exits(self, located):
         try:
-            tuple_locator = ("id", located)
-            self.find(tuple_locator)
+            # tuple_locator = ("id", located)
+            self.driver.find_element("id", located)
+            # self.find(tuple_locator)
             return True
         except:
             return False
