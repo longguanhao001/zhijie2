@@ -22,7 +22,16 @@ goto_MyVideo:
   - locator: MY VIDEO
     by: id
     action: click
-
+dealGuide:
+  - locator: Next
+    by: id
+    action: click
+  - locator: Next
+    by: id
+    action: click
+  - locator: S T A R T
+    by: id
+    action: click
 goto_Me:
   - locator: ME
     by: id

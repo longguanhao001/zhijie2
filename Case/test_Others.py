@@ -20,6 +20,8 @@ class TestMyVideo():
         self.pureMain.save_screenShot()
 
     def test_first_changeChannel(self):
+        # 首次启动处理导航
+        self.pureMain.dealGuide()
         MePage = self.pureMain.goto_Me()
         MePage.changeChannel("auto_test")
 

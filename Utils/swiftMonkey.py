@@ -13,6 +13,7 @@ from tinydb import TinyDB, Query
 from jira import JIRA
 
 
+
 def _getSign(secret):
     '''
     根据秘钥获取时间戳和签名

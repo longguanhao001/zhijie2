@@ -172,3 +172,13 @@ find_BackToApp_Ads:
   - locator: PAGDynamicRootView
     by: id
     action: findtext
+dealGuide:
+  - locator: Next
+    by: id
+    action: click
+  - locator: Next
+    by: id
+    action: click
+  - locator: S T A R T
+    by: id
+    action: click

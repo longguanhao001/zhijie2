@@ -14,22 +14,11 @@ class ClientDriver(object):
     device = "ios"
     env = "test"
     channel = "pure"
-    firstopen = True
 
     @classmethod
     def deal_guideAndPop(cls, driver: WebDriver):
         # 处理导航页和更新弹窗
         # 显示等待
-        if cls.firstopen == True:
-            try:
-                toast_loc = ("id", "Next")
-                next_ele = WebDriverWait(driver, 5, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
-                if next_ele:
-                    next_ele.click()
-                    driver.find_element(by="id", value="Next").click()
-                    driver.find_element(by="id", value="S T A R T").click()
-            except:
-                print("启动app无弹窗")
         try:
             toast_loc = ("id", "icon x white delete")
             ele = WebDriverWait(driver, 5, 0.3).until(expected_conditions.visibility_of_element_located(toast_loc))
@@ -79,7 +68,7 @@ class ClientDriver(object):
             caps["deviceName"] = "iPhone(2)"
             # caps["deviceName"] = "iPhone"
             caps["app"] = "video.test.tools.os"
-            # caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
+            # caps["udid"] = "79ebcfc82ea26c42c13a81371cbc1b8e172488f9"
             caps["udid"] = "auto"
             # caps['xcodeOrgId'] = '3L4QK9YSAV'
             caps['xcodeOrgId'] = '8444HTHN7B'
@@ -87,6 +76,6 @@ class ClientDriver(object):
             caps['autoAcceptAlerts'] = True
             cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
             cls.driver.implicitly_wait(10)
-            cls.deal_guideAndPop(cls.driver)
-            cls.firstopen = False
+            # cls.deal_guideAndPop(cls.driver)
+            # cls.firstopen = False
             return cls.driver
