@@ -91,6 +91,7 @@ class TestMe():
         MePage.reply("i reply you")
         time.sleep(1)
         Assert().assert_equal(True, self.pureMain.is_exits("delete grey box"))
+        # Assert().assert_equal(True, self.pureMain.is_exits("send successfully"))
         while 1:
             time.sleep(3)
             times = 0
