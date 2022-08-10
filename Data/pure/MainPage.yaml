@@ -153,7 +153,7 @@ AlertClickDone:
     by: id
     action: click
 find_FeedAds:
-  - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
+  - locator: //XCUIElementTypeImage/../XCUIElementTypeButton/XCUIElementTypeStaticText
     by: xpath
     action: findtext
 find_DetailFeedAds:
@@ -161,7 +161,7 @@ find_DetailFeedAds:
     by: xpath
     action: findtext
 find_SearchResultAds:
-  - locator: //XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton/XCUIElementTypeStaticText
+  - locator: //XCUIElementTypeTable[@name="Empty list"]/../../XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
     by: xpath
     action: findtext
 find_HistoryAds:

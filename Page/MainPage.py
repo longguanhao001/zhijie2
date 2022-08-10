@@ -178,7 +178,7 @@ class MainPage(BasePage):
         return self
 
     def find_FeedAds(self,page):
-        for i in range(3):
+        for i in range(5):
             try:
                 if page != "Search_Result":
                     if page != "Detail":
