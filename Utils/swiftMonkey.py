@@ -141,7 +141,8 @@ if __name__ == '__main__':
         #创建jira bug
         CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     else:
-        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % version
+
+        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n"
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
