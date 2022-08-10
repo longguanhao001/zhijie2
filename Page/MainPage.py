@@ -88,7 +88,8 @@ class MainPage(BasePage):
         return MyVideoPage()
 
     def dealGuide(self):
-        self.loadSteps(self.yaml_path, "dealGuide")
+        if self.is_exits("Next"):
+            self.loadSteps(self.yaml_path, "dealGuide")
         return self
 
     def goto_Me(self):
