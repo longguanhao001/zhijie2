@@ -70,7 +70,7 @@ class ClientDriver(object):
             # caps["deviceName"] = "iPhone"
             caps["app"] = "video.test.tools.os"
             # caps["udid"] = "79ebcfc82ea26c42c13a81371cbc1b8e172488f9"
-            caps["udid"] = "auto"
+            caps["udid"] = "20a7adaffd52ebb0f01efea599592e4272297911"
             # caps['xcodeOrgId'] = '3L4QK9YSAV'
             caps['xcodeOrgId'] = '8444HTHN7B'
             caps['xcodeSigningId'] = "iPhone Developer"

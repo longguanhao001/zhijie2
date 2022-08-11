@@ -83,6 +83,23 @@ def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
 
 
 if __name__ == '__main__':
+    # 安装apk
+    result = os.popen("/opt/homebrew/bin/ideviceinstaller -l").read()
+    path = os.path.dirname(os.getcwd())
+    file_name_list = os.listdir("%s/Package" % path)
+    cur_path = os.path.dirname(os.getcwd())
+    package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
+    if "video.test.tools.os" not in result:
+        result = os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
+        print(result)
+    else:
+        # 先卸载再删除x
+        os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -U 'video.test.tools.os'").read()
+        result = os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
+        print(result)
   	# 执行monkey
     # 记录日志
     # 扫描崩溃
@@ -124,7 +141,7 @@ if __name__ == '__main__':
         else:
             print("今天已经上报过该崩溃")
     if text:
-        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (version,num,text)
+        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (file_name_list[0],num,text)
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
@@ -142,7 +159,7 @@ if __name__ == '__main__':
         CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     else:
 
-        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n"
+        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name_list[0]
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
