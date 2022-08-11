@@ -182,3 +182,15 @@ dealGuide:
   - locator: S T A R T
     by: id
     action: click
+clickVipIcon:
+  - locator: //XCUIElementTypeSearchField[@name="Search"]/../../../../XCUIElementTypeOther[2]
+    by: xpath
+    action: click
+closePage:
+  - locator: //XCUIElementTypeScrollView/../XCUIElementTypeButton
+    by: xpath
+    action: click
+clickNoThanks:
+  - locator: No, thanks
+    by: id
+    action: click

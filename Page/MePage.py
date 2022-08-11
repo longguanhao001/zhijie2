@@ -98,3 +98,33 @@ class MePage(BasePage):
             self.loadSteps(self.yaml_path, "openDebugMode")
         self.loadSteps(self.yaml_path, "changeChannel", channel=var1)
         return self
+
+    def clickVip(self):
+        # Me页面入口
+        self.loadSteps(self.yaml_path, "clickVip")
+        return self
+
+    def clickContinue(self):
+        # VIP页面点击continue
+        self.loadSteps(self.yaml_path, "clickContinue")
+        return self
+
+    def CancelPay(self):
+        # 取消支付
+        self.loadSteps(self.yaml_path, "CancelPay")
+        return self
+
+    def clickTerms(self):
+        # 查看terms协议
+        self.loadSteps(self.yaml_path, "clickTerms")
+        return self
+
+    def clickEULA(self):
+        # 查看EULA协议
+        self.loadSteps(self.yaml_path, "clickEULA")
+        return self
+
+    def clickRestore(self):
+        # 点击restore
+        self.loadSteps(self.yaml_path, "clickRestore")
+        return self

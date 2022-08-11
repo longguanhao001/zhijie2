@@ -107,3 +107,40 @@ class TestMe():
         MePage.clickVideo()
         time.sleep(0.5)
         Assert().assert_equal(False, self.pureMain.is_exits("Replies"))
+
+    @allure.story("vip用例")
+    def test_endVip(self):
+        VipPage = self.pureMain.clickVipIcon()
+        Assert().assert_equal(True, VipPage.is_exits("Restore"))
+        VipPage.closePage()
+        Assert().assert_equal(True, VipPage.is_exits("No, thanks"))
+        VipPage.clickNoThanks()
+        MePage = self.pureMain.goto_Me()
+        VipPage = MePage.clickVip()
+        Assert().assert_equal(True, VipPage.is_exits("Restore"))
+        VipPage.clickContinue()
+        Assert().assert_equal(True, self.pureMain.is_exits("Subscribe"))
+        VipPage.CancelPay()
+        time.sleep(0.5)
+        Assert().assert_equal(False, self.pureMain.is_exits("Subscribe"))
+        VipPage.clickTerms()
+        Assert().assert_equal(True, VipPage.is_exits("Terms & Conditions"))
+        self.pureMain.backButton()
+        VipPage.clickEULA()
+        Assert().assert_equal(True, VipPage.is_exits("This End-User License Agreement (“EULA”) is a legal agreement between you and Pure Tuber."))
+        self.pureMain.backButton()
+        VipPage.clickRestore()
+        time.sleep(5)
+        self.pureMain.DeiverWaitDisappear("id", "Restore")
+        MePage = self.pureMain.goto_Me()
+        Assert().assert_equal(True, MePage.is_exits("All ads blocked for you"))
+        # 查免广告
+        self.pureMain.goto_Home()
+        ad_list = []
+        ad_map = ["Detail", "Back_to_app"]
+        for page in ad_map:
+            result = self.pureMain.findAds(page)
+            if result:
+                ad_list.append(page)
+        Assert().assert_equal(0,len(ad_list))
+

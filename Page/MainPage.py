@@ -230,3 +230,19 @@ class MainPage(BasePage):
             return True
         else:
             return False
+
+    def clickVipIcon(self):
+        # 首页面icon入口
+        self.loadSteps(self.yaml_path, "clickVipIcon")
+        return self
+
+    def closePage(self):
+        # 关闭页面
+        self.loadSteps(self.yaml_path, "closePage")
+        return self
+
+    def clickNoThanks(self):
+        # 关闭二次确认弹窗
+        if self.is_exits("No, thanks"):
+            self.loadSteps(self.yaml_path, "clickNoThanks")
+        return self

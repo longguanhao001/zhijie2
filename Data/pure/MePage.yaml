@@ -141,3 +141,27 @@ clickVideo:
   - locator: //XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeOther
     by: xpath
     action: click
+clickVip:
+  - locator: Join now to enjoy no ads and more benefits!
+    by: id
+    action: click
+clickContinue:
+  - locator: Continue
+    by: id
+    action: click
+CancelPay:
+  - locator: Cancel
+    by: id
+    action: click
+clickTerms:
+  - locator: Terms of service
+    by: id
+    action: click
+clickEULA:
+  - locator: EULA
+    by: id
+    action: click
+clickRestore:
+  - locator: Restore
+    by: id
+    action: click

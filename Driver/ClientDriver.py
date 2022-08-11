@@ -42,7 +42,7 @@ class ClientDriver(object):
                 print(result)
                 os.remove(r"%s" % package_path)
             else:
-                # 先卸载再删除
+                # 先卸载再删除x
                 os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -U 'video.test.tools.os'").read()
                 result = os.popen("/opt/homebrew/bin/ideviceinstaller -u 20a7adaffd52ebb0f01efea599592e4272297911 -i '%s'" % package_path).read()
                 print(result)
@@ -54,6 +54,7 @@ class ClientDriver(object):
                 cls.channel = "go"
             else:
                 pass
+            print("start test for %s" % cls.channel)
         except:
             pass
 
