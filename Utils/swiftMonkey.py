@@ -150,7 +150,7 @@ if __name__ == '__main__':
         # oken = "c8ff7a0774d36dfa02e33bfad99b36570e984e195e69437c942560961f6ade4b"
         # secret = "SEC658edeb2de8017fb2b7c6bc1065b8683dcfa44ac78929506e9b814733329b339"
         dingdata = {'msgtype': 'markdown',
-                    'markdown': {'title': 'Monkey Test for ' + version,
+                    'markdown': {'title': 'Monkey Test for  + version',
                                  'text': text},
                     # 'at': {"atMobiles": ["13524352709"], "isAtAll": False}}
                     }
