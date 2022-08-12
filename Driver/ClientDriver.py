@@ -55,7 +55,8 @@ class ClientDriver(object):
             else:
                 pass
             print("start test for %s" % cls.channel)
-        except:
+        except Exception as e:
+            print("install app error%s"%e)
             pass
 
     @classmethod
