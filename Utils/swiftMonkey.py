@@ -83,23 +83,6 @@ def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
 
 
 if __name__ == '__main__':
-    # 安装apk
-    result = os.popen("/opt/homebrew/bin/ideviceinstaller -l").read()
-    path = os.path.dirname(os.getcwd())
-    file_name_list = os.listdir("%s/Package" % path)
-    cur_path = os.path.dirname(os.getcwd())
-    package_path = "%s/Package/%s" % (cur_path, file_name_list[0])
-    if "video.test.tools.os" not in result:
-        result = os.popen(
-            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
-        print(result)
-    else:
-        # 先卸载再删除x
-        os.popen(
-            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -U 'video.test.tools.os'").read()
-        result = os.popen(
-            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
-        print(result)
   	# 执行monkey
     # 记录日志
     # 扫描崩溃
