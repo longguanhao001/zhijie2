@@ -109,7 +109,7 @@ class TestMe():
         Assert().assert_equal(False, self.pureMain.is_exits("Replies"))
 
     @allure.story("vip用例")
-    def test_endVip(self):
+    def test_end_Vip(self):
         VipPage = self.pureMain.clickVipIcon()
         Assert().assert_equal(True, VipPage.is_exits("Restore"))
         VipPage.closePage()
