@@ -137,7 +137,7 @@ if __name__ == '__main__':
     for f in fileList:
         # 创建一个用户查询对象
         User = Query()
-        # 查询一个用户名为Sally的数据
+        # 根据报告名查数据
         query_data = table.search(User.reportName == f)
         if len(query_data) < 1:
             # 上报dingding+提bug
@@ -158,7 +158,7 @@ if __name__ == '__main__':
         else:
             print("今天已经上报过该崩溃")
     if text:
-        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (file_name, num,text)
+        text= "#### <font color=#228B22>Monkey Test for %s</font>\n\n**iPhone Xs,iOS14.8.1,00008020-000248693468002E**Carsh&ANR\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (file_name, num,text)
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
@@ -176,7 +176,7 @@ if __name__ == '__main__':
         CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     else:
 
-        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
+        text = "#### <font color=#228B22>Monkey Test for %s</font>\n\n**iPhone Xs,iOS14.8.1,00008020-000248693468002E**Carsh&ANR\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
