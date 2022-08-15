@@ -81,9 +81,35 @@ def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
     except Exception as e:
         print(str(e))
 
+def installIpa():
+    # install apk
+    result = os.popen("/opt/homebrew/bin/ideviceinstaller  -u 00008020-000248693468002E -l").read()
+    path = os.path.dirname(os.getcwd())
+    file_name_list = os.listdir("%s/iOS_Monkey/Package" % path)
+    cur_path = os.path.dirname(os.getcwd())
+    package_path = "%s/iOS_Monkey/Package/%s" % (cur_path, file_name_list[0])
+    if "video.test.tools.os" not in result:
+        result = os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
+        print(result)
+        os.remove(r"%s" % package_path)
+    else:
+        os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -U 'video.test.tools.os'").read()
+        result = os.popen(
+            "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
+        print(result)
+        os.remove(r"%s" % package_path)
+    return file_name_list[0]
+
 
 if __name__ == '__main__':
+    file_name = installIpa()
   	# 执行monkey
+    os.popen(
+                "xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
+    os.popen(
+            "idevicecrashreport -u 00008020-000248693468002E -e -k /Users/vanced/Downloads/crashreport").read()
     # 记录日志
     # 扫描崩溃
     fileList = []
@@ -124,7 +150,7 @@ if __name__ == '__main__':
         else:
             print("今天已经上报过该崩溃")
     if text:
-        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (file_name_list[0],num,text)
+        text= "Monkey Test for %s\n\n<font color=#A0522D>%s</font> Carsh&ANR\n\n%s请在bugly平台处理https://bugly.qq.com/v2/crash-reporting/crashes/335c93a88a?pid=2" % (file_name, num,text)
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
@@ -142,7 +168,7 @@ if __name__ == '__main__':
         CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     else:
 
-        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name_list[0]
+        text = "Monkey Test for %s\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
