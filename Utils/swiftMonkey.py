@@ -114,9 +114,9 @@ if __name__ == '__main__':
     file_name, dsym = installIpa()
   	# 执行monkey
     os.popen(
-                "xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
+                "/usr/bin/xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
     os.popen(
-            "idevicecrashreport -u 00008020-000248693468002E -e -k /Users/vanced/Downloads/crashreport").read()
+            "/opt/homebrew/bin/idevicecrashreport -u 00008020-000248693468002E -e -k /Users/vanced/Downloads/crashreport").read()
     # 记录日志
     # 扫描崩溃
     fileList = []
