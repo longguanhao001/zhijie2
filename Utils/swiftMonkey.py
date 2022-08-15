@@ -85,9 +85,16 @@ def installIpa():
     # install apk
     result = os.popen("/opt/homebrew/bin/ideviceinstaller  -u 00008020-000248693468002E -l").read()
     path = os.path.dirname(os.getcwd())
-    file_name_list = os.listdir("%s/iOS_Monkey/Package" % path)
+    file_name_list = os.listdir("%s/Package" % path)
+    file_name = ""
+    dsym = ""
+    for i in file_name_list:
+        if "ipa" in i:
+            file_name = i
+        else:
+            dsym = i
     cur_path = os.path.dirname(os.getcwd())
-    package_path = "%s/iOS_Monkey/Package/%s" % (cur_path, file_name_list[0])
+    package_path = "%s/Package/%s" % (cur_path, file_name)
     if "video.test.tools.os" not in result:
         result = os.popen(
             "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
@@ -100,11 +107,11 @@ def installIpa():
             "/opt/homebrew/bin/ideviceinstaller -u 00008020-000248693468002E -i '%s'" % package_path).read()
         print(result)
         os.remove(r"%s" % package_path)
-    return file_name_list[0]
+    return file_name, dsym
 
 
 if __name__ == '__main__':
-    file_name = installIpa()
+    file_name, dsym = installIpa()
   	# 执行monkey
     os.popen(
                 "xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
