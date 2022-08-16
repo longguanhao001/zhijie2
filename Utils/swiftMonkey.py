@@ -84,6 +84,7 @@ def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
 def installIpa():
     # install apk
     result = os.popen("/opt/homebrew/bin/ideviceinstaller  -u 00008020-000248693468002E -l").read()
+    print(result)
     path = os.path.dirname(os.getcwd())
     file_name_list = os.listdir("%s/Package" % path)
     file_name = ""
