@@ -23,3 +23,14 @@ clipboardValue:
   - locator: Paste
     by: id
     action: click
+
+openRestricedMode:
+  - locator: Settings
+    by: id
+    action: click
+  - locator: Content
+    by: id
+    action: click
+  - locator: //XCUIElementTypeSwitch
+    by: xpath
+    action: click

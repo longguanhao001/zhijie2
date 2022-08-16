@@ -92,4 +92,16 @@ class VideoDetailPage(BasePage):
             self.loadSteps(self.yaml_path, "clickCancel")
         self.loadSteps(self.yaml_path, "closeVideo")
 
+    def closeRestrited(self):
+        # 关闭限制模式
+        return self.loadSteps(self.yaml_path, "closeRestrited")
+
+    def sendComment(self, var1):
+        # 发送评论
+        return self.loadSteps(self.yaml_path, "sendComment", keyword=var1)
+
+    def deleteComment(self):
+        # 删除评论
+        return self.loadSteps(self.yaml_path, "deleteComment")
+
 

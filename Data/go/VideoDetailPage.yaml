@@ -78,3 +78,38 @@ closeVideo:
   - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
     by: xpath
     action: click
+
+
+closeRestrited:
+  - locator: Restricted mode has hidden comments for this video. Setting to open.
+    by: id
+    action: click
+  - locator: //XCUIElementTypeSwitch
+    by: xpath
+    action: click
+  - locator: //XCUIElementTypeButton
+    by: xpath
+    action: click
+
+sendComment:
+  - locator: //XCUIElementTypeStaticText[@name="Comments"]
+    by: xpath
+    action: click
+  - locator: send a public comment...
+    by: id
+    action: click
+  - locator: (//XCUIElementTypeStaticText[@name="send a public comment..."])[2]
+    by: xpath
+    action: sendkeys
+    text: $keyword
+  - locator: SEND
+    by: id
+    action: click
+
+deleteComment:
+  - locator: delete grey box
+    by: id
+    action: click
+  - locator: CLEAR
+    by: id
+    action: click

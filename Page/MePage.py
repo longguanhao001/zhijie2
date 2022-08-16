@@ -14,9 +14,6 @@ class MePage(BasePage):
         # 点击小铃铛
         self.loadSteps(self.yaml_path, "clickBell")
 
-    def clickSettings(self):
-        # 跳转到设置页
-        self.loadSteps(self.yaml_path, "clickSettings")
 
     def feedback(self,var1):
         # 反馈功能
@@ -127,4 +124,9 @@ class MePage(BasePage):
     def clickRestore(self):
         # 点击restore
         self.loadSteps(self.yaml_path, "clickRestore")
+        return self
+
+    def openRestricedMode(self):
+        # 打开限制模式
+        self.loadSteps(self.yaml_path, "openRestricedMode")
         return self

@@ -94,7 +94,24 @@ class TestVideoDetail():
         now_Progress = int(hour) * 3600 + int(min) * 60 + int(sec)
         Assert().assert_greaterAndEqual(now_Progress, cur_Progress)
 
-    # @allure.story("视频详情页测试用例")
+    @allure.story("视频详情页测试用例")
+    @allure.step("评论功能")
+    def test_comment_login(self):
+        Mepage = self.pureMain.goto_Me()
+        Mepage.openRestricedMode()
+        self.pureMain.backButton().backButton().goto_Home()
+        DetailPage = self.pureMain.goto_VideoDetail()
+        Assert().assert_equal(True, self.pureMain.is_exits("Restricted mode has hidden comments for this video. Setting to open."))
+        DetailPage.closeRestrited()
+        time.sleep(2)
+        Assert().assert_equal(False, self.pureMain.is_exits("Restricted mode has hidden comments for this video. Setting to open."))
+        DetailPage.sendComment("Bagus kak semoga Durasi waktu engak di kurangi...")
+        Assert().assert_equal(True, self.pureMain.is_exits("Vivopure Hu · 1 second ago"))
+        DetailPage.deleteComment()
+        time.sleep(2)
+        Assert().assert_equal(False, self.pureMain.is_exits("Vivopure Hu · 1 second ago"))
+
+    # @allure.story("视频详情页测试用例旧播放器")
     # @allure.step("local history功能")
     # def test_playhistory_unlogin1(self):
     #     homeVideoName = self.pureMain.getVideoName()
