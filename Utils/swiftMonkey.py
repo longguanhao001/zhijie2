@@ -176,7 +176,7 @@ if __name__ == '__main__':
         CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
     else:
 
-        text = "#### <font color=#228B22>Monkey Test for %s</font>\n\n**iPhone Xs,iOS14.8.1,00008020-000248693468002E**Carsh&ANR\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
+        text = "#### <font color=#228B22>Monkey Test for %s</font>\n\n**iPhone Xs,iOS14.8.1,00008020-000248693468002E**\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
         # 测试群
         token = "8f67c89ef25c3d9b7b0555538369c09cdcfc5eac9dfec4dfe6d3614b05cd689c"
         secret = "SEC5a50a1f460a7f7f32326480630c6c88391b26310372974c478c6ac24dfa19af5"
