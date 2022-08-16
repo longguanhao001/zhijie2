@@ -182,11 +182,20 @@ class MainPage(BasePage):
             try:
                 if page != "Search_Result":
                     if page != "Detail":
-                        result = self.loadSteps(self.yaml_path, "find_FeedAds")
+                        result = self.driver.find_element("xpath","//XCUIElementTypeImage/../XCUIElementTypeButton/XCUIElementTypeStaticText").text
+                        # result = self.loadSteps(self.yaml_path, "find_FeedAds")
                     else:
-                        result = self.loadSteps(self.yaml_path, "find_DetailFeedAds")
+                        result = self.driver.find_element("xpath", "//XCUIElementTypeImage/../../../XCUIElementTypeButton").text
+                        # result = self.loadSteps(self.yaml_path, "find_DetailFeedAds")
                 else:
-                    result = self.loadSteps(self.yaml_path, "find_SearchResultAds")
+                    result = False
+                    try:
+                        result = self.driver.find_element("xpath", "//XCUIElementTypeTable[@name='Empty list']/../../XCUIElementTypeOther/"
+                                                      "XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/"
+                                                      "XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton").text
+                    except:
+                        result = self.driver.find_element("//XCUIElementTypeCell /XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton").text
+                    # result = self.loadSteps(self.yaml_path, "find_SearchResultAds")
             except:
                 result = False
             if result not in ["video icon more", False]:
@@ -200,6 +209,7 @@ class MainPage(BasePage):
         # 找各个广告位
         if page == "Featured":
             self.DeiverWaitExist("id", "Trending")
+            time.sleep(2)
             result = self.find_FeedAds(page)
         elif page == "Trending":
             self.loadSteps(self.yaml_path, "changeTag", TagName="Trending")
@@ -211,21 +221,35 @@ class MainPage(BasePage):
         elif page == "Search_History":
             self.loadSteps(self.yaml_path, "click_Search")
             try:
-                result = self.loadSteps(self.yaml_path, "find_HistoryAds")
+                result = self.driver.find_element("id", "web dialog").text
+                # result = self.loadSteps(self.yaml_path, "find_HistoryAds")
             except:
                 result = False
             self.backButton()
         elif page == "Detail":
+            self.old_page = self.driver.page_source
             self.loadSteps(self.yaml_path, "goto_VideoDetail")
             time.sleep(15)
             result = self.find_FeedAds(page)
             self.swipe("down")
             self.closeVideo()
+            time.sleep(1)
         else:
-            try:
-                result = self.loadSteps(self.yaml_path, "find_BackToApp_Ads")
-            except:
+            new_page = self.driver.page_source
+            if new_page == self.old_page:
                 result = False
+            else:
+                result = True
+            # try:
+            #     # result = self.driver.find_element("id", "PAGDynamicRootView").text
+            #     # result = self.loadSteps(self.yaml_path, "find_BackToApp_Ads")
+            #     new_page = self.driver.page_source
+            #     if new_page == self.old_page:
+            #         result = False
+            #     else:
+            #         result = True
+            # except:
+            #     result = False
         if result:
             return True
         else:
