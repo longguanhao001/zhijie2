@@ -108,7 +108,7 @@ clickReply:
     by: xpath
     action: click
 clickComment:
-  - locator: REPLIES
+  - locator: 3REPLIES
     by: id
     action: click
 clickComment1:

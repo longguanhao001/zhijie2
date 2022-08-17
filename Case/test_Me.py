@@ -81,11 +81,7 @@ class TestMe():
         MePage.clickReply()
         time.sleep(0.5)
         Assert().assert_equal(True, self.pureMain.is_exits("Comments"))
-        for i in range(3):
-            try:
-                MePage.clickComment()
-            except:
-                self.pureMain.driver.swipe("up")
+        MePage.clickComment()
         time.sleep(0.5)
         Assert().assert_equal(True, self.pureMain.is_exits("Replies"))
         MePage.reply("i reply you")

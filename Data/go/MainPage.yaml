@@ -6,44 +6,8 @@ goto_Search:
     by: id
     action: sendkeys&enter
     text: $keyword
-getVideoName:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText
-    by: xpath
-    action: findtext
-getChannelName:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeOther/XCUIElementTypeStaticText[2]
-    by: xpath
-    action: findtext
-clickchannel:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage
-    by: xpath
-    action: click
 channelClickVideo:
   - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
-    by: xpath
-    action: click
-clickVideosTag:
-  - locator: Videos
-    by: id
-    action: click
-clickPlaylistsTag:
-  - locator: Playlists
-    by: id
-    action: click
-clickSubscribe:
-  - locator: SUBSCRIBE
-    by: id
-    action: click
-clickChannelTag:
-  - locator: Channels
-    by: id
-    action: click
-clickAboutlTag:
-  - locator: About
-    by: id
-    action: click
-clickUnSubscribe:
-  - locator: //XCUIElementTypeImage/../XCUIElementTypeButton
     by: xpath
     action: click
 channelClickPlaylist:
@@ -53,103 +17,8 @@ channelClickPlaylist:
   - locator: playlist play all
     by: id
     action: click
-channelSortBy:
-  - locator: //XCUIElementTypeStaticText[@name="Sort by"]/../XCUIElementTypeButton
-    by: xpath
-    action: click
-  - locator: $keyword
-    by: id
-    action: click
-changeTag:
-  - locator: $TagName
-    by: id
-    action: click
-goto_VideoDetail:
-  - locator: //XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeOther/XCUIElementTypeImage
-    by: xpath
-    action: click
-goto_MyVideo:
-  - locator: MY VIDEO
-    by: id
-    action: click
-goto_Home:
-  - locator: HOME
-    by: id
-    action: click
-backButton:
-  - locator: //XCUIElementTypeButton
-    by: xpath
-    action: click
-goto_Me:
-  - locator: ME
-    by: id
-    action: click
-clickMore:
-  - locator: video icon more
-    by: id
-    action: click
-clickMoreTwo:
-  - locator: //XCUIElementTypeCell[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton
-    by: xpath
-    action: click
-clickBgPlay:
-  - locator: Start playing in the background
-    by: id
-    action: click
-clickPopPlay:
-  - locator: Start playing in a popup
-    by: id
-    action: click
-clickShare:
-  - locator: Share
-    by: id
-    action: click
-  - locator: Copy
-    by: id
-    action: click
 click_Search:
   - locator: home icon nav search black
-    by: id
-    action: click
-clickReportContent:
-  - locator: Report Content
-    by: id
-    action: click
-clickAddToPlaylist:
-  - locator: Add To Playlist
-    by: id
-    action: click
-  - locator: Auto
-    by: id
-    action: click
-  - locator: Done
-    by: id
-    action: click
-clickAddToWatchLater:
-  - locator: Add To Watch Later
-    by: id
-    action: click
-clickNotInterested:
-  - locator: Not Interested
-    by: id
-    action: click
-NotInterestedUndo:
-  - locator: Undo
-    by: id
-    action: click
-closeVideo:
-  - locator: //XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[2]
-    by: xpath
-    action: click
-selectAndReport:
-  - locator: //XCUIElementTypeStaticText[@name="$option"]
-    by: xpath
-    action: click
-  - locator: SEND
-    by: id
-    action: click
-AlertClickDone:
-  - locator: Done
     by: id
     action: click
 find_FeedAds:
@@ -164,13 +33,3 @@ find_BackToApp_Ads:
   - locator: //XCUIElementTypeProgressIndicator[@name="Progress"]
     by: xpath
     action: findtext
-dealGuide:
-  - locator: Next
-    by: id
-    action: click
-  - locator: Next
-    by: id
-    action: click
-  - locator: S T A R T
-    by: id
-    action: click

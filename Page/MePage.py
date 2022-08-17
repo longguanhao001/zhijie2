@@ -55,16 +55,21 @@ class MePage(BasePage):
 
     def clickComment(self):
         # 点击小铃铛的第二层页面
-        try:
-            self.loadSteps(self.yaml_path, "clickComment")
-        except:
+        for i in range(3):
             try:
-                self.loadSteps(self.yaml_path, "clickComment1")
+                self.loadSteps(self.yaml_path, "clickComment")
+                break
             except:
                 try:
-                    self.loadSteps(self.yaml_path, "clickComment2")
+                    self.loadSteps(self.yaml_path, "clickComment1")
+                    break
                 except:
-                    print("没找到合适执行用例的二级评论")
+                    try:
+                        self.loadSteps(self.yaml_path, "clickComment2")
+                        break
+                    except:
+                        print("没找到合适执行用例的二级评论")
+                        self.swipe("up")
         return self
 
     def reply(self,var1):

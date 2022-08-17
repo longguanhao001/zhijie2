@@ -53,53 +53,56 @@ class TestHomeSearch():
     def test_HomeTag(self):
         #检查home tag切换功能
         for i in ["Trending", "Music", "Gaming", "Movies"]:
-            video_title = self.pureMain.changeTag(i).getVideoName()
+            self.pureMain.changeTag(i)
+            time.sleep(0.5)
+            video_title = self.pureMain.getVideoName()
             Assert().assert_not_equal(None, video_title)
 
     @allure.story("Home页mor按钮功能测试用例")
     def test_more_login(self):
 
-        # 举报内容,弹窗会被自动点掉影响成功率
-        self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
-        # Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
-        self.pureMain.DeiverWaitDisappear("id","Report Success")
-
-        # 背景播放
-        video_name = self.pureMain.getVideoName()
-        self.pureMain.clickMore()
-        Assert().assert_equal(True, self.pureMain.is_exits("Report Content"))
-        self.pureMain.clickBgPlay()
-        Assert().assert_equal(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
-        self.pureMain.closeVideo()
-
-        # 分享,page_source会转译符号，影响成功率
-        self.pureMain.clickMore().clickShare()
-        #self.pureMain.click_Search().clipboardValue()
-        # Assert().assert_in(video_name, self.pureMain.driver.page_source)
+        # # 举报内容,弹窗会被自动点掉影响成功率
+        # self.pureMain.clickMore().clickReportContent().selectAndReport("Sexual content")
+        # # Assert().assert_equal(True, self.pureMain.is_exits("Report Success"))
+        # self.pureMain.DeiverWaitDisappear("id","Report Success")
+        #
+        # # 背景播放
+        # video_name = self.pureMain.getVideoName()
+        # self.pureMain.clickMore()
+        # Assert().assert_equal(True, self.pureMain.is_exits("Report Content"))
+        # self.pureMain.clickBgPlay()
+        # Assert().assert_equal(True, self.pureMain.is_exits("Tab Bar")) # 断言是否后台播放
+        # self.pureMain.closeVideo()
+        #
+        # # 分享,page_source会转译符号，影响成功率
+        # self.pureMain.clickMore().clickShare()
+        # #self.pureMain.click_Search().clipboardValue()
+        # # Assert().assert_in(video_name, self.pureMain.driver.page_source)
+        # # self.pureMain.backButton()
+        #
+        #
+        # # no interested
+        # self.pureMain.clickMoreTwo().clickNotInterested()
+        # Assert().assert_equal(True, self.pureMain.is_exits("Video removed"))
+        # self.pureMain.NotInterestedUndo()
+        # time.sleep(1)
+        # Assert().assert_equal(False, self.pureMain.is_exits("Video removed"))
+        #
+        # # 加入playlist和稍后看
+        # self.pureMain.clickMore().clickAddToPlaylist()
+        # self.pureMain.clickMore().clickAddToWatchLater()
+        # PlaylistPage = self.pureMain.goto_MyVideo().clickPlaylist()
+        # Assert().assert_equal(True, self.pureMain.is_exits(video_name))
+        # PlaylistPage.removeVideo()
         # self.pureMain.backButton()
-
-
-        # no interested
-        self.pureMain.clickMoreTwo().clickNotInterested()
-        Assert().assert_equal(True, self.pureMain.is_exits("Video removed"))
-        self.pureMain.NotInterestedUndo()
-        time.sleep(1)
-        Assert().assert_equal(False, self.pureMain.is_exits("Video removed"))
-
-        # 加入playlist和稍后看
-        self.pureMain.clickMore().clickAddToPlaylist()
-        self.pureMain.clickMore().clickAddToWatchLater()
-        PlaylistPage = self.pureMain.goto_MyVideo().clickPlaylist()
-        Assert().assert_equal(True, self.pureMain.is_exits(video_name))
-        PlaylistPage.removeVideo()
-        self.pureMain.backButton()
-        PlaylistPage.clickWatchLater()
-        Assert().assert_equal(True, self.pureMain.is_exits(video_name))
-        PlaylistPage.removeVideo()
-        self.pureMain.backButton().goto_Home()
+        # PlaylistPage.clickWatchLater()
+        # Assert().assert_equal(True, self.pureMain.is_exits(video_name))
+        # PlaylistPage.removeVideo()
+        # self.pureMain.backButton().goto_Home()
 
         # 小窗播放
         self.pureMain.clickMore().clickPopPlay()
+        time.sleep(10)
         Assert().assert_equal(True, self.pureMain.is_exits("PIPUIView"))  # 断言是否小窗播放
 
     @allure.story("channel页功能测试用例")

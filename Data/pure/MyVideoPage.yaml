@@ -145,12 +145,3 @@ removeVideo:
   - locator: Remove
     by: id
     action: click
-
-clickLikeVideos:
-  - locator: Liked videos
-    by: id
-    action: click
-clickPlaylist:
-  - locator: Auto
-    by: id
-    action: click

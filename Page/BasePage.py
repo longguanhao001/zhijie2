@@ -29,17 +29,20 @@ class BasePage():
         return ClientDriver
 
     def find(self, kv):
-        #寻找元素的方法
-        try:
-            element = self.driver.find_element(*kv)
-            self.error_times = 0
-        except:
-            # 如果没找到元素，则处理异常后重试
-            for i in self.back_list:
-                if i[1] in str(self.driver.page_source):
-                    self.driver.find_element(by=i[0], value=i[1]).click()
-            element = self.driver.find_element(*kv)
+        element = self.driver.find_element(*kv)
         return element
+        # 会导致很慢，也很少用到，所以注释掉
+        #寻找元素的方法
+        # try:
+        #     element = self.driver.find_element(*kv)
+        #     self.error_times = 0
+        # except:
+        #     # 如果没找到元素，则处理异常后重试
+        #     for i in self.back_list:
+        #         if i[1] in str(self.driver.page_source):
+        #             self.driver.find_element(by=i[0], value=i[1]).click()
+        #     element = self.driver.find_element(*kv)
+        # return element
 
     def enter(self):
         # 输入后点击确定键
@@ -50,10 +53,19 @@ class BasePage():
 
     def loadSteps(self, path: str, key, **kwargs):
         # 根据yaml文件解析测试用例
+        temp_path = path
         path = path.replace("$channel", self.getClient().channel)
+
         file = open(path, "r")
         yaml_data = yaml.safe_load(file)
-        steps = yaml_data[key]
+        try:
+            steps = yaml_data[key]
+        except:
+            # 如果渠道用例里没有key，则使用pure主包用例的key
+            path = temp_path.replace("$channel", "pure")
+            file = open(path, "r")
+            yaml_data = yaml.safe_load(file)
+            steps = yaml_data[key]
         for step in steps:
             if "$" in step["locator"]:
                 for k, v in kwargs.items(): # 参数化locator字段
@@ -129,5 +141,6 @@ class BasePage():
             self.driver.find_element("id", located)
             # self.find(tuple_locator)
             return True
+
         except:
             return False
