@@ -10,6 +10,7 @@ def analayz():
     time.sleep(10) # 等待allure报告
     f = open("%s/report.json" % path, "r")
     file = json.load(f)
+    print(file)
     result = ""
     summary = dict(file["summary"])
     passed = summary.get("passed", "0")
