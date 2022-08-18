@@ -46,7 +46,28 @@ def dingding_bysign(data, assess_token, secret):
     print(r.text)
     return r.text
 
-def CreateJiraBug(project,title,desc,assignee='',fixedver=''):
+def uploadFile(filepath):
+    osslink = ''
+    try:
+        url = "http://161.117.69.170:81/upload_file"
+        #url = 'http://172.21.2.150:8001/upload_file'
+        fileparam = {'file': open(filepath, 'rb')}
+        response = requests.post(url, files=fileparam)
+        if response.status_code != 200:
+            time.sleep(5)
+            response = requests.post(url, files=fileparam)
+        print(response.text)
+        Data = json.loads(response.text)
+        osslink = Data['data']['oss_url']
+    except Exception as e:
+        print(str(e))
+    return osslink
+
+def CreateJiraBug(project,title,desc, oss_link, dsym,assignee='',fixedver='' ):
+    # 上传dsym文件
+    dsym_link = uploadFile(dsym)
+    desc = desc + "\n\ndsym:%s\n\ncrash_Report:%s" % (dsym_link,oss_link)
+
     # 报bug
     try:
         print('Report bug: ' + desc)
@@ -94,6 +115,8 @@ def installIpa():
             file_name = i
         else:
             dsym = i
+    dsym = "%s/Package/%s" % (path,dsym)
+    print(dsym)
     cur_path = os.path.dirname(os.getcwd())
     package_path = "%s/Package/%s" % (cur_path, file_name)
     if "video.test.tools.os" not in result:
@@ -133,18 +156,22 @@ if __name__ == '__main__':
             if "PureTuber" in f and date_str in f and "wakeups_" not in f:
                 fileList.append(f)
     print(fileList)
+
     # 数据库检验bug是否存在，不存在的话就上报
     db = TinyDB("database.json")
     table = db.table("iOSMonkey")
     # 记录今天未上报的crash数量
     num = 0
     text = ""
+    oss_link = []
     for f in fileList:
         # 创建一个用户查询对象
         User = Query()
         # 根据报告名查数据
         query_data = table.search(User.reportName == f)
         if len(query_data) < 1:
+            # 上传crash报告
+            oss_link.append(uploadFile("%s/%s" % (path, f)))
             # 上报dingding+提bug
             table.insert({"reportName": f})
             report = open("%s/%s" % (path, f), "r")
@@ -179,7 +206,7 @@ if __name__ == '__main__':
         dingding_bysign(dingdata, token, secret)
         # CreateJiraBug(project, title, desc, assignee='', fixedver=''):
         #创建jira bug
-        CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text)
+        CreateJiraBug("PTI", "%s%s Crash,test for monkey" % (version, num), text ,oss_link, dsym)
     else:
 
         text = "#### <font color=#228B22>Monkey Test for %s</font>\n\n**iPhone Xs,iOS14.8.1,00008020-000248693468002E**\n\n<font color=#A0522D>0</font> Carsh&ANR\n\n" % file_name
