@@ -10,13 +10,15 @@ def analayz():
     time.sleep(10) # 等待allure报告
     f = open("%s/report.json" % path, "r")
     file = json.load(f)
-    print(file)
+    # print(file)
     result = ""
     summary = dict(file["summary"])
     passed = summary.get("passed", "0")
     failed = summary.get("failed", "0")
     error = summary.get("error", "0")
+    rerun = summary.get("rerun", "0")
     total = summary.get("total", "0")
+    total = int(total) - int(rerun)
     result = result.join("PASSED=%s\nFAILED=%s\nERROR=%s\nTOTAL=%s\n" % (passed,failed,error,total))
     file = open("%s/report.json" % path, "w")
     file.write(result)
