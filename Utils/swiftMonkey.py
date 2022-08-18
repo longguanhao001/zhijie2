@@ -112,15 +112,18 @@ def installIpa():
 
 
 if __name__ == '__main__':
-    file_name, dsym = installIpa()
+    # file_name, dsym = installIpa()
+
     time.sleep(5)
   	# 执行monkey
-    result = os.popen(
-                "/usr/bin/xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
-    print(result)
+    os.system("/usr/bin/xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test")
+
+    # result = os.popen(
+    #             "/usr/bin/xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test").read()
+    # print(result)
     result = os.popen(
             "/opt/homebrew/bin/idevicecrashreport -u 00008020-000248693468002E -e -k /Users/vanced/Downloads/crashreport").read()
-    print(result)
+    # print(result)
     # 记录日志
     # 扫描崩溃
     fileList = []
