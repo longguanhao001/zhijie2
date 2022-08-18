@@ -112,9 +112,9 @@ def installIpa():
 
 
 if __name__ == '__main__':
-    # file_name, dsym = installIpa()
+    file_name, dsym = installIpa()
 
-    time.sleep(5)
+    time.sleep(20)
   	# 执行monkey
     os.system("/usr/bin/xcodebuild -project /Users/vanced/Downloads/sjk_swiftmonkey/sjk-monkey.xcodeproj -scheme sjk-monkey -destination 'id=00008020-000248693468002E' test")
 
