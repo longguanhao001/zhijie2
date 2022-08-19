@@ -194,3 +194,7 @@ clickNoThanks:
   - locator: No, thanks
     by: id
     action: click
+clickLater:
+  - locator: Later
+    by: id
+    action: click

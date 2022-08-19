@@ -90,6 +90,8 @@ class MainPage(BasePage):
     def dealGuide(self):
         if self.is_exits("Next"):
             self.loadSteps(self.yaml_path, "dealGuide")
+        if self.is_exits("Later"):
+            self.loadSteps(self.yaml_path, "clickLater")
         return self
 
     def goto_Me(self):
